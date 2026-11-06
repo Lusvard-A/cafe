@@ -7,19 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-:root{--bg:#efe6da;--fg:#21150f;--card:#f7f0e6;--line:#d8c9b6;--mut:#7a6a5b;--acc:#c9a06a;--accfg:#1a110c;--sky:linear-gradient(180deg,#3b2a1f,#1c120d);--hfg:#f1e7da}
+:root{--bg:#efe6da;--fg:#21150f;--card:#f7f0e6;--line:#d8c9b6;--mut:#7a6a5b;--acc:#c9a06a;--accfg:#1a110c;--sky:linear-gradient(180deg,#f4e4d4,#e6d0b8);--hfg:#21150f}
 [data-theme=dark]{--bg:#150e0a;--card:#1f1510;--line:#352619;--fg:#efe6da;--mut:#a39384}
-[data-period=morning]{--sky:linear-gradient(180deg,#3b2a1f,#1c120d);--hfg:#f1e7da}
-[data-period=afternoon]{--sky:linear-gradient(180deg,#4a3220,#20130c);--hfg:#f1e7da}
-[data-period=evening]{--sky:linear-gradient(180deg,#1d1311,#0a0605);--hfg:#f1e7da}
-[data-theme=light]{--acc:#7a4a2a;--accfg:#fff}
-[data-theme=dark][data-period=afternoon]{--acc:#d4954f}
-[data-theme=dark][data-period=evening]{--acc:#b98862}
+[data-period=morning]{--acc:#c9a06a;--accfg:#1a110c;--sky:linear-gradient(180deg,#f4e4d4,#e6d0b8);--hfg:#21150f}
+[data-period=afternoon]{--acc:#2f8a8a;--accfg:#ffffff;--sky:linear-gradient(180deg,#d4f1f4,#e8f8f5);--hfg:#1a3a3a}
+[data-period=evening]{--acc:#d4a574;--accfg:#1a1510;--sky:linear-gradient(180deg,#2a2420,#1a1510);--hfg:#f4e4d4}
+[data-theme=dark][data-period=morning]{--acc:#d4b48a;--sky:linear-gradient(180deg,#2a2018,#1a120d)}
+[data-theme=dark][data-period=afternoon]{--acc:#4db8b8;--sky:linear-gradient(180deg,#1a2a2a,#0f1f1f)}
+[data-theme=dark][data-period=evening]{--acc:#e6c09a;--sky:linear-gradient(180deg,#1a1510,#0a0806)}
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{margin:0;font:16px/1.6 'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--fg);transition:background .5s,color .5s;padding-bottom:70px}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body{margin:0;font:16px/1.6 'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--fg);transition:background .8s,color .8s;padding-bottom:70px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 h1,h2,h3,nav b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.1;margin:0}
 h2{font-size:clamp(2.3rem,4.5vw,3.5rem);display:flex;align-items:center;gap:1rem;margin-bottom:2.2rem}
@@ -29,11 +29,11 @@ section{padding:6rem 1.5rem;max-width:1180px;margin:auto}
 
 button{font:inherit;cursor:pointer;color:inherit}
 :focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-.btn{background:var(--acc);color:var(--accfg);border:0;border-radius:4px;padding:.9rem 1.9rem;font-weight:600;letter-spacing:.02em;text-decoration:none;display:inline-block;transition:filter .2s}
-.btn:hover{filter:brightness(1.1)}
+.btn{background:var(--acc);color:var(--accfg);border:0;border-radius:4px;padding:.9rem 1.9rem;font-weight:600;letter-spacing:.02em;text-decoration:none;display:inline-block;transition:filter .2s,transform .2s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:inherit;border:2px solid currentColor}
 
-nav{position:sticky;top:0;z-index:20;display:flex;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem 1rem;padding-top:calc(.6rem + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);height:64px}
+nav{position:sticky;top:0;z-index:20;display:flex;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem 1rem;padding-top:calc(.6rem + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);height:64px;transition:background .5s}
 nav b{font-size:1.7rem}
 .nl{display:flex;gap:2rem}.nl a{color:var(--fg);text-decoration:none;font-size:.92rem;font-weight:500}.nl a:hover{color:var(--acc)}
 .tools{display:flex;gap:.4rem}
@@ -48,62 +48,69 @@ body.loaded .intro-top{transform:translateY(-100%)}
 body.loaded .intro-bottom{transform:translateY(100%)}
 
 /* Hero Section */
-.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--sky);color:var(--hfg)}
-.hero-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;z-index:0}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.7));z-index:1}
+.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--sky);color:var(--hfg);transition:background 1s}
+.hero-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;z-index:0;opacity:0.4;mix-blend-mode:multiply}
+[data-period=evening] .hero-video{opacity:0.2}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0.4));z-index:1;transition:background 1s}
+[data-period=evening] .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.7))}
 .hero-content{position:relative;z-index:2;max-width:1100px;margin-inline:auto;width:100%;padding:4rem 1.5rem;animation:heroZoomIn 1.8s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
 @keyframes heroZoomIn{0%{transform:scale(1.15);filter:blur(4px);opacity:0}100%{transform:scale(1);filter:blur(0);opacity:1}}
 
 .hero h1{font-size:clamp(4.2rem,14vw,10rem);line-height:.9;letter-spacing:-.04em}
-.hero p{font-size:1.25rem;max-width:34ch;margin-top:1.4rem}
-.greet{font-size:1rem;font-weight:500;margin-bottom:1rem;opacity:.85}
+.hero p{font-size:1.25rem;max-width:34ch;margin-top:1.4rem;font-weight:500}
+.greet{font-size:1.1rem;font-weight:600;margin-bottom:1rem;opacity:.9;text-transform:uppercase;letter-spacing:.1em}
 .acts{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.5rem 0}
 .hero .btn.ghost{color:var(--hfg)}
-.hfoot{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:1.1rem;border-top:1px solid color-mix(in srgb,currentColor 30%,transparent);font-size:.92rem}
+.hfoot{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:1.1rem;border-top:1px solid color-mix(in srgb,currentColor 30%,transparent);font-size:.92rem;font-weight:500}
 
 /* Smoke Effect */
 .smoke-wrapper{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:200px;height:300px;pointer-events:none;z-index:3}
-.smoke-particle{position:absolute;bottom:0;left:50%;width:60px;height:60px;background:radial-gradient(circle,rgba(200,180,160,0.25) 0%,transparent 70%);border-radius:50%;filter:blur(15px);animation:smokeRise 6s infinite ease-out}
+.smoke-particle{position:absolute;bottom:0;left:50%;width:60px;height:60px;background:radial-gradient(circle,rgba(200,180,160,0.3) 0%,transparent 70%);border-radius:50%;filter:blur(15px);animation:smokeRise 6s infinite ease-out}
 .smoke-particle:nth-child(1){animation-delay:0s;left:40%;width:80px;height:80px}
 .smoke-particle:nth-child(2){animation-delay:1.5s;left:60%;width:50px;height:50px}
 .smoke-particle:nth-child(3){animation-delay:3s;left:45%;width:70px;height:70px}
 .smoke-particle:nth-child(4){animation-delay:4.5s;left:55%;width:90px;height:90px}
-@keyframes smokeRise{0%{transform:translateY(0) scale(0.5) translateX(-50%);opacity:0}20%{opacity:0.4}100%{transform:translateY(-250px) scale(2.5) translateX(-50%);opacity:0}}
+@keyframes smokeRise{0%{transform:translateY(0) scale(0.5) translateX(-50%);opacity:0}20%{opacity:0.5}100%{transform:translateY(-250px) scale(2.5) translateX(-50%);opacity:0}}
 
-/* Categories */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
-.cat-card{background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:1px solid var(--line)}
-.cat-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.1)}
-.cat-media{height:180px;overflow:hidden}
+/* Categories under Menu */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-bottom:3rem}
+.cat-card{background:var(--card);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:1px solid var(--line)}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.cat-media{height:140px;overflow:hidden}
 .cat-media img,.cat-media video{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .cat-card:hover .cat-media img,.cat-card:hover .cat-media video{transform:scale(1.05)}
-.cat-card h3{padding:1rem;text-align:center;margin:0;font-size:1.2rem}
+.cat-card h3{padding:.8rem;text-align:center;margin:0;font-size:1.1rem;font-weight:600}
 
 /* Menu & Filters */
 .filters{display:flex;gap:1.2rem;align-items:center;margin-bottom:1.6rem;flex-wrap:wrap}
 #q{flex:1;min-width:160px;padding:.55rem 1rem;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit}
-.tabs{display:flex;gap:2rem;border-bottom:1px solid var(--line);margin-bottom:1.4rem}
-.tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:.8rem 0;color:var(--mut);font-weight:500;font-size:1rem}
+.tabs{display:flex;gap:2rem;border-bottom:1px solid var(--line);margin-bottom:1.4rem;overflow-x:auto;padding-bottom:2px}
+.tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:.8rem 0;color:var(--mut);font-weight:500;font-size:1rem;white-space:nowrap}
 .tabs button[aria-selected=true]{background:none;color:var(--fg);border-bottom-color:var(--acc)}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2.4rem 1.6rem}
 .card{background:none;border:0;border-radius:0;cursor:pointer;text-align:left;padding:0;display:block;width:100%}
 .pw{border-radius:6px;overflow:hidden}
-.ph{height:200px;display:grid;place-items:center;font-size:4.5rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 24%,var(--card)),color-mix(in srgb,var(--acc) 6%,var(--bg)))}
+.ph{height:200px;display:grid;place-items:center;font-size:4.5rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 24%,var(--card)),color-mix(in srgb,var(--acc) 6%,var(--bg)));overflow:hidden}
+.ph img,.ph video{width:100%;height:100%;object-fit:cover}
 .cb{padding:1rem 0 .2rem}.cb h3{font-size:1.65rem}
 .cb .row{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.6rem}.cb b{font-weight:600}
 .tag{font-size:.72rem;padding:.05rem .55rem;border-radius:4px;background:none;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
-.tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg)}
+.tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg);font-weight:600}
 
-.car{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem}
-.car .card{flex:0 0 min(78%,280px);scroll-snap-align:start}
+.car{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.car .card{flex:0 0 min(78%,300px);scroll-snap-align:start;background:var(--card);border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.car .ph{height:220px;border-radius:0}
+.car .cb{padding:1rem}
 
 /* About & Gallery */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.about p{font-size:1.15rem;max-width:44ch}
-.photos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.photos .pw:first-child{grid-row:span 2}
-.about-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:center}
+.about p{font-size:1.15rem;max-width:36ch;line-height:1.7}
+.photos{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:.8rem;height:100%}
+.photos .pw:first-child{grid-column:1;grid-row:1 / 3}
+.about-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;transition:transform .4s}
+.about-img:hover{transform:scale(1.02)}
 
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem}
 .tile{aspect-ratio:1;width:100%;height:100%;object-fit:cover;border-radius:8px;transition:transform .4s}
@@ -140,20 +147,20 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 .ov.on .mod{transform:scale(1)}
 .mod .ph{height:240px;font-size:6rem;overflow:hidden}
 .mb{padding:1.2rem 1.4rem 1.4rem}
-.x{position:absolute;top:.7rem;right:.7rem;width:38px;height:38px;border-radius:4px;border:1px solid var(--line);background:var(--bg);font-size:1.2rem;z-index:5}
+.x{position:absolute;top:.7rem;right:.7rem;width:38px;height:38px;border-radius:4px;border:1px solid var(--line);background:var(--bg);font-size:1.2rem;z-index:5;cursor:pointer}
 .sz{display:flex;gap:.5rem;margin:.8rem 0}
-.sz button{flex:1;border:2px solid var(--line);background:transparent;border-radius:6px;padding:.5rem}
+.sz button{flex:1;border:2px solid var(--line);background:transparent;border-radius:6px;padding:.5rem;cursor:pointer}
 .sz button[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 15%,transparent)}
 
 .dr{justify-content:flex-end}
 .dr .mod{width:min(400px,100%);height:100%;max-height:none;border-radius:22px 0 0 22px;transform:translateX(100%)}
 .dr.on .mod{transform:none}
 .ci{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
-.ci button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg)}
+.ci button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer}
 
 #tbl{width:5rem;padding:.4rem;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
 .qrt{display:flex;gap:.3rem;flex-wrap:wrap;margin:.6rem 0}
-.qrt button{border:1px solid var(--line);background:var(--bg);border-radius:4px;padding:.25rem .8rem;font-size:.85rem;color:var(--fg)}
+.qrt button{border:1px solid var(--line);background:var(--bg);border-radius:4px;padding:.25rem .8rem;font-size:.85rem;color:var(--fg);cursor:pointer}
 .qrt button[aria-selected=true]{background:var(--acc);color:var(--accfg)}
 #qr{background:#fff;padding:12px;display:inline-block;border-radius:12px}
 #qrnote{color:var(--mut);font-size:.9rem;max-width:34ch;margin-top:.5rem}
@@ -168,16 +175,16 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 .fm header b{font:400 1.8rem 'Instrument Serif',Georgia,serif}
 .fm .sp{flex:1}
 .fm header .btn{padding:.5rem 1rem}
-.x2{border:1px solid var(--line);background:none;border-radius:4px;padding:.5rem 1rem}
+.x2{border:1px solid var(--line);background:none;border-radius:4px;padding:.5rem 1rem;cursor:pointer}
 .fcats{width:100%;display:flex;gap:1.4rem;overflow-x:auto}
-.fcats button{background:none;border:0;border-bottom:2px solid transparent;padding:.4rem 0;color:var(--mut);white-space:nowrap}
+.fcats button{background:none;border:0;border-bottom:2px solid transparent;padding:.4rem 0;color:var(--mut);white-space:nowrap;cursor:pointer}
 .fcats button:hover{color:var(--fg);border-bottom-color:var(--acc)}
 .fm .wrap{max-width:820px;margin:auto;padding:1rem 1.2rem calc(5rem + env(safe-area-inset-bottom,0px))}
 .fm .wrap::before{content:"";display:block;height:1px;margin:1rem auto 0;width:120px;background:var(--acc)}
 .fm h3{font-size:2.2rem;margin:2.4rem 0 .4rem;scroll-margin-top:110px;display:flex;align-items:center;gap:.9rem}
 .fm h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
 .fm h3::before{content:"";width:7px;height:7px;background:var(--acc);transform:rotate(45deg);flex:none}
-.li{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px dashed var(--line);padding:.95rem 0;color:var(--fg);transition:background .25s,padding .25s}
+.li{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px dashed var(--line);padding:.95rem 0;color:var(--fg);transition:background .25s,padding .25s;cursor:pointer}
 .li:hover{background:color-mix(in srgb,var(--acc) 9%,transparent);padding-inline:.7rem}
 .li .r{display:flex;gap:.5rem;align-items:baseline}
 .li .d{flex:1;border-bottom:1px dotted var(--acc);opacity:.4;transform:translateY(-4px);min-width:12px}
@@ -189,9 +196,12 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
   .nl{display:none}
   section{padding:4rem 1.2rem}
   .about,.visit,.footer-grid{grid-template-columns:1fr}
+  .photos{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .photos .pw:first-child{grid-column:1 / 3;grid-row:auto;height:250px}
   .bar{display:flex}
   .nav-hide{display:none}
   .hfoot{gap:.6rem 1.5rem}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -206,7 +216,7 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 <nav>
   <b>Lusin Café</b>
   <div class="nl">
-    <a href="#categories">Menu</a>
+    <a href="#menu">Menu</a>
     <a href="#about">About</a>
     <a href="#gallery">Gallery</a>
     <a href="#visit">Visit</a>
@@ -238,7 +248,7 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
     <h1>Lusin Café</h1>
     <p data-i="tag"></p>
     <div class="acts">
-      <a class="btn" href="#categories" data-i="view"></a>
+      <a class="btn" href="#menu" data-i="view"></a>
       <button class="btn ghost" id="resv" data-i="order"></button>
     </div>
     <div class="chips" id="chips"></div>
@@ -250,34 +260,33 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
   </div>
 </header>
 
-<section id="categories">
-  <h2 data-i="categories">Our Offerings</h2>
+<section id="menu">
+  <h2 data-i="menu"></h2>
+  
+  <!-- Categories integrated under Menu -->
   <div class="cat-grid">
     <div class="cat-card" data-cat="0">
-      <div class="cat-media"><img src="pexels-dzeninalukac-1469903.jpg" alt="Coffee"></div>
+      <div class="cat-media"><img src="pexels-prudvi-raj-1202091-15221973.jpg" alt="Coffee"></div>
       <h3>Coffee</h3>
     </div>
     <div class="cat-card" data-cat="1">
-      <div class="cat-media"><video src="5765897-hd_1920_1080_24fps.mp4" autoplay muted loop playsinline></video></div>
+      <div class="cat-media"><video src="pexels-olegnagovski-20476268.jpg" autoplay muted loop playsinline></video></div>
       <h3>Tea</h3>
     </div>
     <div class="cat-card" data-cat="2">
-      <div class="cat-media"><video src="20350297-hd_1080_1920_60fps.mp4" autoplay muted loop playsinline></video></div>
+      <div class="cat-media"><video src="5380055-hd_1080_1920_30fps.mp4" autoplay muted loop playsinline></video></div>
       <h3>Cold drinks</h3>
     </div>
     <div class="cat-card" data-cat="3">
-      <div class="cat-media"><img src="pexels-rais-radzi-1317360057-28913841.jpg" alt="Breakfast"></div>
+      <div class="cat-media"><img src="pexels-elizabeth-zernetska-86424040-9001223.jpg" alt="Breakfast"></div>
       <h3>Breakfast</h3>
     </div>
     <div class="cat-card" data-cat="4">
-      <div class="cat-media"><img src="pexels-imagenesclau-36542834.jpg" alt="Desserts"></div>
+      <div class="cat-media"><img src="pexels-minchephoto-7491901.jpg" alt="Desserts"></div>
       <h3>Desserts</h3>
     </div>
   </div>
-</section>
 
-<section id="menu">
-  <h2 data-i="menu"></h2>
   <div class="filters">
     <input id="q" type="search" data-p="search">
     <label><input type="checkbox" id="fs"> <span data-i="sugar"></span></label>
@@ -346,7 +355,7 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
     <div class="footer-col">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="#categories">Menu</a></li>
+        <li><a href="#menu">Menu</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#visit">Visit Us</a></li>
@@ -384,7 +393,7 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 </div>
 
 <div class="bar">
-  <a href="#categories">🍽 <span data-i="menu"></span></a>
+  <a href="#menu">🍽 <span data-i="menu"></span></a>
   <button id="cartb2" class="btn">🛒</button>
   <a href="tel:+37400000000">📞 <span data-i="call"></span></a>
 </div>
@@ -415,38 +424,35 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const T={
-  en:{g:["Good morning","Good afternoon","Good evening"],tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",view:"View menu",order:"Order / Reserve",menu:"Menu",search:"Search the menu",sugar:"No sugar",under:"Under $5",special:"Today's special",categories:"Our Offerings",about:"About us",aboutTxt:"Lusin means moon in Armenian. We opened as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"],hint:["Morning picks come first.","Afternoon picks come first.","Evening picks come first."],ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal"},
-  hy:{g:["Բարի լույս","Բարի օր","Բարի երեկո"],tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",view:"Տեսնել ճաշացանկը",order:"Պատվիրել /Ամրագրել",menu:"Ճաշացանկ",search:"Որոնել ճաշացանկում",sugar:"Առանց շաքար",under:"Մինչև $5",special:"Օրվա ընտրանի",categories:"Մեր առաջարկները",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է մոլորակի արբանյակ՝ Լուսին։ Մենք սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա հետ ընթացող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել պատվերին",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"],hint:["Առավոտյան ընտրանին առաջինն է։","Ցերեկային ընտրանին առաջինն է։","Երեկոյան ընտրանին առաջինն է։"],ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ"},
-  ru:{g:["Доброе утро","Добрый день","Добрый вечер"],tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",view:"Смотреть меню",order:"Заказать / Забронировать",menu:"Меню",search:"Поиск по меню",sugar:"Без сахара",under:"До $5",special:"Выбор дня",categories:"Наши предложения",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",open:"Открыто",closed:"Закрыто",add:"Добавить в заказ",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"],hint:["Утренние позиции первыми.","Дневные позиции первыми.","Вечерние позиции первыми."],ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал"}
+  en:{g:["☀ Good morning","🌤 Good afternoon","🌙 Good evening"],tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",view:"View menu",order:"Order / Reserve",menu:"Menu",search:"Search the menu",sugar:"No sugar",under:"Under $5",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We opened as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"],hint:["Morning picks come first.","Afternoon picks come first.","Evening picks come first."],ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal"},
+  hy:{g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեկո"],tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",view:"Տեսնել ճաշացանկը",order:"Պատվիրել /Ամրագրել",menu:"Ճաշացանկ",search:"Որոնել ճաշացանկում",sugar:"Առանց շաքար",under:"Մինչև $5",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է մոլորակի արբանյակ՝ Լուսին։ Մենք սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա հետ ընթացող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել պատվերին",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"],hint:["Առավոտյան ընտրանին առաջինն է։","Ցերեկային ընտրանին առաջինն է։","Երեկոյան ընտրանին առաջինն է։"],ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ"},
+  ru:{g:["☀ Доброе утро","🌤 Добрый день","🌙 Добрый вечер"],tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",view:"Смотреть меню",order:"Заказать / Забронировать",menu:"Меню",search:"Поиск по меню",sugar:"Без сахара",under:"До $5",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",open:"Открыто",closed:"Закрыто",add:"Добавить в заказ",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"],hint:["Утренние позиции первыми.","Дневные позиции первыми.","Вечерние позиции первыми."],ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал"}
 };
 const DR=[["S",0],["M",.5],["L",1]],FR=[["Regular",0],["Large",2]];
+
+// Menu items with specific media for Today's Special
 const M=[
-['Espresso',0,3,'Single-origin shot with rich crema.',['espresso'],5,[],'m',[],1],
-['Americano',0,3.5,'Espresso lengthened with hot water.',['espresso','water'],10,[],'m',[],1],
-['Cappuccino',0,4.2,'Espresso, steamed milk and thick foam.',['espresso','milk'],110,['Milk'],'m',['pop'],0],
-['Flat White',0,4.5,'Double ristretto with velvety microfoam.',['espresso','milk'],120,['Milk'],'ma',[],0],
-['Latte',0,4.5,'Espresso with plenty of steamed milk.',['espresso','milk'],150,['Milk'],'ma',[],0],
-['Cortado',0,4,'Equal parts espresso and warm milk.',['espresso','milk'],60,['Milk'],'a',[],0],
-['V60 Pour Over',0,5,'Hand-brewed filter coffee from rotating beans.',['filter coffee'],5,[],'m',['new'],1],
-['Earl Grey',1,3.8,'Black tea scented with bergamot.',['black tea','bergamot'],2,[],'ae',['pop'],1],
-['Jasmine Green Tea',1,3.8,'Delicate green tea with jasmine blossoms.',['green tea','jasmine'],2,[],'ae',[],1],
-['Chai Latte',1,4.8,'Spiced black tea with steamed milk.',['black tea','spices','milk'],160,['Milk'],'e',[],0],
-['Hot Chocolate',1,4.5,'Belgian dark chocolate and steamed milk.',['chocolate','milk'],240,['Milk'],'e',[],0],
-['Iced Latte',2,4.8,'Espresso and cold milk over ice.',['espresso','milk','ice'],130,['Milk'],'a',['pop'],0],
-['Cold Brew',2,4.8,'Steeped for 18 hours. Smooth and strong.',['coffee','water'],5,[],'a',[],1],
-['Espresso Tonic',2,5,'Espresso over tonic water and orange peel.',['espresso','tonic','orange'],35,[],'a',['new'],0],
-['Iced Matcha Latte',2,5.5,'Ceremonial matcha with milk and ice.',['matcha','milk'],110,['Milk'],'a',[],0],
-['Fresh Lemonade',2,4.2,'Pressed lemon, mint and sparkling water.',['lemon','mint','sugar'],110,[],'a',[],0],
-['Avocado Toast',3,11.5,'Sourdough, smashed avocado, lime and chilli.',['sourdough','avocado','lime'],380,['Gluten'],'m',['pop'],1],
-['Eggs Benedict',3,13,'Poached eggs, ham and hollandaise on a muffin.',['eggs','ham','hollandaise','muffin'],620,['Egg','Gluten','Milk'],'m',[],1],
-['Pancakes',3,10.5,'Fluffy stack with berries and maple syrup.',['flour','egg','berries','maple'],560,['Gluten','Egg','Milk'],'m',[],0],
-['Granola Bowl',3,9,'House granola, Greek yoghurt and seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',['new'],0],
-['Butter Croissant',3,3.8,'Baked every morning, flaky and golden.',['flour','butter'],270,['Gluten','Milk'],'m',[],0],
-['Tiramisu',4,7,'Mascarpone, espresso-soaked savoiardi and cocoa.',['mascarpone','espresso','cocoa'],430,['Milk','Egg','Gluten'],'ae',['pop'],0],
-['New York Cheesecake',4,7.5,'Classic baked cheesecake with berry compote.',['cream cheese','biscuit','berries'],460,['Milk','Egg','Gluten'],'ae',[],0],
-['Chocolate Brownie',4,5.5,'Dense and fudgy, served warm.',['chocolate','butter','egg'],410,['Milk','Egg','Gluten','Nuts'],'ae',[],0],
-['Lemon Tart',4,6.5,'Buttery shortcrust with tangy lemon curd.',['lemon','butter','egg'],380,['Milk','Egg','Gluten'],'a',['new'],0]
-].map((a,i)=>({id:i,n:a[0],c:a[1],p:a[2],e:'',d:a[3],ing:a[4],k:a[5],al:a[6],t:a[7],tg:a[8],v:0,s:a[9]}));
+  {id:0,n:'Espresso',c:0,p:3,e:'☕',d:'Single-origin shot with rich crema.',ing:['espresso'],k:5,al:[],t:'m',tg:['pop'],v:0,s:1,media:{type:'img',src:'pexels-dzeninalukac-1469903.jpg'}},
+  {id:1,n:'Americano',c:0,p:3.5,e:'☕',d:'Espresso lengthened with hot water.',ing:['espresso','water'],k:10,al:[],t:'m',tg:[],v:0,s:1},
+  {id:2,n:'Cappuccino',c:0,p:4.2,e:'☕',d:'Espresso, steamed milk and thick foam.',ing:['espresso','milk'],k:110,al:['Milk'],t:'m',tg:['pop'],v:0,s:0},
+  {id:3,n:'Flat White',c:0,p:4.5,e:'☕',d:'Double ristretto with velvety microfoam.',ing:['espresso','milk'],k:120,al:['Milk'],t:'ma',tg:[],v:0,s:0},
+  {id:4,n:'Latte',c:0,p:4.5,e:'☕',d:'Espresso with plenty of steamed milk.',ing:['espresso','milk'],k:150,al:['Milk'],t:'ma',tg:[],v:0,s:0},
+  {id:5,n:'Earl Grey',c:1,p:3.8,e:'🍵',d:'Black tea scented with bergamot.',ing:['black tea','bergamot'],k:2,al:[],t:'ae',tg:['pop'],v:0,s:1},
+  {id:6,n:'Jasmine Green Tea',c:1,p:3.8,e:'🍵',d:'Delicate green tea with jasmine blossoms.',ing:['green tea','jasmine'],k:2,al:[],t:'ae',tg:[],v:0,s:1},
+  {id:7,n:'Chai Latte',c:1,p:4.8,e:'🍵',d:'Spiced black tea with steamed milk.',ing:['black tea','spices','milk'],k:160,al:['Milk'],t:'e',tg:['pop'],v:0,s:0,media:{type:'video',src:'5765897-hd_1920_1080_24fps.mp4'}},
+  {id:8,n:'Hot Chocolate',c:1,p:4.5,e:'🍫',d:'Belgian dark chocolate and steamed milk.',ing:['chocolate','milk'],k:240,al:['Milk'],t:'e',tg:[],v:0,s:0},
+  {id:9,n:'Iced Latte',c:2,p:4.8,e:'🧊',d:'Espresso and cold milk over ice.',ing:['espresso','milk','ice'],k:130,al:['Milk'],t:'a',tg:['pop'],v:0,s:0},
+  {id:10,n:'Cold Brew',c:2,p:4.8,e:'🧊',d:'Steeped for 18 hours. Smooth and strong.',ing:['coffee','water'],k:5,al:[],t:'a',tg:[],v:0,s:1},
+  {id:11,n:'Fresh Lemonade',c:2,p:4.2,e:'🍋',d:'Pressed lemon, mint and sparkling water.',ing:['lemon','mint','sugar'],k:110,al:[],t:'a',tg:['new'],v:0,s:0,media:{type:'video',src:'20350297-hd_1080_1920_60fps.mp4'}},
+  {id:12,n:'Avocado Toast',c:3,p:11.5,e:'🥑',d:'Sourdough, smashed avocado, lime and chilli.',ing:['sourdough','avocado','lime'],k:380,al:['Gluten'],t:'m',tg:['pop'],v:0,s:1,media:{type:'img',src:'pexels-rais-radzi-1317360057-28913841.jpg'}},
+  {id:13,n:'Eggs Benedict',c:3,p:13,e:'🍳',d:'Poached eggs, ham and hollandaise on a muffin.',ing:['eggs','ham','hollandaise','muffin'],k:620,al:['Egg','Gluten','Milk'],t:'m',tg:[],v:0,s:1},
+  {id:14,n:'Pancakes',c:3,p:10.5,e:'🥞',d:'Fluffy stack with berries and maple syrup.',ing:['flour','egg','berries','maple'],k:560,al:['Gluten','Egg','Milk'],t:'m',tg:[],v:0,s:0},
+  {id:15,n:'Granola Bowl',c:3,p:9,e:'🥣',d:'House granola, Greek yoghurt and seasonal fruit.',ing:['oats','yoghurt','fruit'],k:340,al:['Gluten','Milk','Nuts'],t:'m',tg:['new'],v:0,s:0},
+  {id:16,n:'Tiramisu',c:4,p:7,e:'🍰',d:'Mascarpone, espresso-soaked savoiardi and cocoa.',ing:['mascarpone','espresso','cocoa'],k:430,al:['Milk','Egg','Gluten'],t:'ae',tg:['pop'],v:0,s:0,media:{type:'img',src:'pexels-imagenesclau-36542834.jpg'}},
+  {id:17,n:'New York Cheesecake',c:4,p:7.5,e:'🍰',d:'Classic baked cheesecake with berry compote.',ing:['cream cheese','biscuit','berries'],k:460,al:['Milk','Egg','Gluten'],t:'ae',tg:[],v:0,s:0},
+  {id:18,n:'Chocolate Brownie',c:4,p:5.5,e:'🍫',d:'Dense and fudgy, served warm.',ing:['chocolate','butter','egg'],k:410,al:['Milk','Egg','Gluten','Nuts'],t:'ae',tg:[],v:0,s:0},
+  {id:19,n:'Lemon Tart',c:4,p:6.5,e:'🍋',d:'Buttery shortcrust with tangy lemon curd.',ing:['lemon','butter','egg'],k:380,al:['Milk','Egg','Gluten'],t:'a',tg:['new'],v:0,s:0}
+];
 
 const TAGS={new:"☕ New",pop:"🔥 Popular"};
 const PN=["morning","afternoon","evening"];
@@ -475,28 +481,53 @@ const GALLERY_MEDIA=[
   {type:'img',src:'pexels-esranurkalay-33089291.jpg'}
 ];
 
-let lang="en",cat=0,per=0,auto=true,cart=[],cur=null,sz=0,theme=null,curCat=0;
+let lang="en",cat=0,per=0,cart=[],cur=null,sz=0,theme=null,curCat=0;
 const L=()=>T[lang],sizes=m=>m.c<3?DR:FR,fmt=n=>"$"+n.toFixed(2);
 const autoP=()=>{const h=new Date().getHours();return h<12?0:h<17?1:2};
 
-function setP(i){per=i;document.body.dataset.period=PN[i];if(!theme)document.body.dataset.theme="dark";render()}
-function tr(){const t=L();$$("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);$$("[data-p]").forEach(e=>e.placeholder=t[e.dataset.p]);document.documentElement.lang=lang;render();clk()}
+function setP(i){
+  per=i;
+  document.body.dataset.period=PN[i];
+  if(!theme)document.body.dataset.theme="dark";
+  render();
+}
+
+function tr(){
+  const t=L();
+  $$("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);
+  $$("[data-p]").forEach(e=>e.placeholder=t[e.dataset.p]);
+  document.documentElement.lang=lang;
+  render();
+  clk();
+}
 
 function render(){
   const t=L();
-  $("#greet").textContent=t.g[per]+" ☀🌤🌙"[per]||"";
-  $("#chips").innerHTML=["☀ "+t.g[0].split(" ").pop(),"🌤 "+t.g[1].split(" ").pop(),"🌙 "+t.g[2].split(" ").pop()].map((x,i)=>`<button data-p${i} aria-pressed="${!auto&&per==i}">${x}</button>`).join("")+`<button id="au" aria-pressed="${auto}">Auto</button>`;
-  $$("#chips button[data-p0],#chips button[data-p1],#chips button[data-p2]").forEach((b,i)=>b.onclick=()=>{auto=false;setP(i)});
-  $("#au").onclick=()=>{auto=true;setP(autoP())};
+  $("#greet").textContent=t.g[per];
+  
+  // Time chips without Auto
+  $("#chips").innerHTML=["☀ "+t.g[0].split(" ")[1],"🌤 "+t.g[1].split(" ")[1],"🌙 "+t.g[2].split(" ")[1]].map((x,i)=>`<button data-p${i} aria-pressed="${per==i}">${x}</button>`).join("");
+  $$("#chips button[data-p0],#chips button[data-p1],#chips button[data-p2]").forEach((b,i)=>b.onclick=()=>setP(i));
   
   $("#tabs").innerHTML=t.cats.map((c,i)=>`<button role="tab" aria-selected="${i==cat}" data-c="${i}">${c}</button>`).join("");
   $$("#tabs button").forEach(b=>b.onclick=()=>{cat=+b.dataset.c;render()});
   $("#hint").textContent="🕒 "+t.hint[per];
   
   const q=$("#q").value.toLowerCase();
-  const list=M.filter(m=>m.c==cat&&m.n.toLowerCase().includes(q)&&(!$("#fs").checked||m.s)&&(!$("#fp").checked||m.p<5)).sort((a,b)=>b.t.includes(PN[per][0])-a.t.includes(PN[per][0]));
+  const list=M.filter(m=>m.c==cat&&m.n.toLowerCase().includes(q)&&(!$("#fs").checked||m.s)&&(!$("#fp").checked||m.p<5)).sort((a,b)=>{
+    const aMatch=a.t.includes(PN[per][0])?1:0;
+    const bMatch=b.t.includes(PN[per][0])?1:0;
+    return bMatch-aMatch;
+  });
   $("#grid").innerHTML=list.map(card).join("")||`<p>—</p>`;
-  $("#car").innerHTML=M.filter(m=>m.tg.length).sort((a,b)=>b.t.includes(PN[per][0])-a.t.includes(PN[per][0])).slice(0,6).map(card).join("");
+  
+  // Today's special: filter items with 'pop' or 'new' tags, sort by current period relevance
+  const specials=M.filter(m=>m.tg.length).sort((a,b)=>{
+    const aMatch=a.t.includes(PN[per][0])?1:0;
+    const bMatch=b.t.includes(PN[per][0])?1:0;
+    return bMatch-aMatch;
+  }).slice(0,5);
+  $("#car").innerHTML=specials.map(card).join("");
   
   $$(".card").forEach(c=>c.onclick=()=>openM(+c.dataset.id));
   $$(".cat-card").forEach(c=>c.onclick=()=>openCat(+c.dataset.cat));
@@ -510,7 +541,12 @@ function render(){
 
 function card(m){
   const t=L(),on=m.t.includes(PN[per][0]);
-  return `<button class="card" data-id="${m.id}"><div class="pw"><div class="ph">${m.e}</div></div><div class="cb"><h3>${m.n}</h3><small>${t.cats[m.c]}</small><div class="row"><b>${fmt(m.p)}</b><span>${on?`<span class="tag now">${t.now}</span>`:""}${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join("")}</span></div></div></button>`;
+  let mediaHtml=`<div class="ph" style="display:grid;place-items:center;font-size:4.5rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 24%,var(--card)),color-mix(in srgb,var(--acc) 6%,var(--bg)))">${m.e}</div>`;
+  if(m.media){
+    if(m.media.type==='video') mediaHtml=`<div class="ph"><video src="${m.media.src}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video></div>`;
+    else mediaHtml=`<div class="ph"><img src="${m.media.src}" style="width:100%;height:100%;object-fit:cover" alt="${m.n}"></div>`;
+  }
+  return `<button class="card" data-id="${m.id}">${mediaHtml}<div class="cb"><h3>${m.n}</h3><small>${t.cats[m.c]}</small><div class="row"><b>${fmt(m.p)}</b><span>${on?`<span class="tag now">${t.now}</span>`:""}${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join("")}</span></div></div></button>`;
 }
 
 function openCat(index){
@@ -532,7 +568,12 @@ function openM(id){
 
 function modal(){
   const t=L(),m=cur,S=sizes(m);
-  $("#mph").innerHTML=`<div style="height:240px;display:grid;place-items:center;font-size:6rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 34%,var(--card)),color-mix(in srgb,var(--acc) 12%,var(--bg)))">${m.e}</div>`;
+  let mediaHtml=`<div style="height:240px;display:grid;place-items:center;font-size:6rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 34%,var(--card)),color-mix(in srgb,var(--acc) 12%,var(--bg)))">${m.e}</div>`;
+  if(m.media){
+    if(m.media.type==='video') mediaHtml=`<video src="${m.media.src}" autoplay muted loop playsinline style="width:100%;height:240px;object-fit:cover"></video>`;
+    else mediaHtml=`<img src="${m.media.src}" style="width:100%;height:240px;object-fit:cover" alt="${m.n}">`;
+  }
+  $("#mph").innerHTML=mediaHtml;
   $("#mb").innerHTML=`<h2 style="font-size:1.8rem;margin:0 0 .4rem">${m.n}</h2><p>${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join("")}</p><p>${m.d}</p><p><b>${t.ing}:</b> ${m.ing.join(", ")}<br><b>${m.k} ${t.kcal}</b> · <b>${t.al}:</b> ${m.al.join(", ")||t.none}</p><div class="sz">${S.map((s,i)=>`<button aria-pressed="${i==sz}" data-s="${i}">${s[0]}<br><small>${fmt(m.p+s[1])}</small></button>`).join("")}</div><button class="btn" id="add" style="width:100%">${t.add} · ${fmt(m.p+S[sz][1])}</button>`;
   $$(".sz button").forEach(b=>b.onclick=()=>{sz=+b.dataset.s;modal()});
   $("#add").onclick=()=>{const k=m.id+"-"+sz,x=cart.find(c=>c.k==k);x?x.q++:cart.push({k,id:m.id,s:sz,q:1});close();cartUI()};
@@ -618,7 +659,7 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{document.body.classList.add('loaded')},500);
 });
 
-auto=true;tr();setP(autoP());qr();setInterval(clk,60000);chk();
+tr();setP(autoP());qr();setInterval(clk,60000);chk();
 </script>
 </body>
 </html>
