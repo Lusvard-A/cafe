@@ -7,197 +7,239 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-:root{--bg:#ffffff;--fg:#1a1a1a;--card:#fafafa;--line:#e5e5e5;--mut:#666666;--acc:#8b6f47;--accfg:#ffffff;--sky:linear-gradient(180deg,#f8f9fa,#ffffff);--hfg:#1a1a1a}
-[data-theme=dark]{--bg:#0a0a0a;--card:#141414;--line:#2a2a2a;--fg:#f5f5f5;--mut:#999999;--acc:#c9a876}
-[data-period=morning]{--acc:#8b6f47;--sky:linear-gradient(180deg,#fef9f3,#ffffff)}
-[data-period=afternoon]{--acc:#4a90a4;--sky:linear-gradient(180deg,#f0f8ff,#ffffff)}
-[data-period=evening]{--acc:#d4a574;--sky:linear-gradient(180deg,#1a1a1a,#0a0a0a);--hfg:#f5f5f5}
-[data-theme=dark][data-period=morning]{--acc:#c9a876;--sky:linear-gradient(180deg,#1a1510,#0a0a0a)}
-[data-theme=dark][data-period=afternoon]{--acc:#6bb5c9;--sky:linear-gradient(180deg,#0f1a1f,#0a0a0a)}
-[data-theme=dark][data-period=evening]{--acc:#e6c09a;--sky:linear-gradient(180deg,#0a0a0a,#050505)}
+:root{
+  --bg:#ffffff;--fg:#16181c;--card:#f7f7f5;--line:#e4e4e0;--mut:#6c6f76;
+  --acc:#a9743f;--accfg:#fff;--hfg:#fff
+}
+[data-theme=dark]{--bg:#101114;--fg:#eceae6;--card:#191b1f;--line:#2a2d33;--mut:#9a9ea7}
+[data-period=morning]{--acc:#a9743f;--accfg:#fff}
+[data-period=afternoon]{--acc:#2c7a76;--accfg:#fff}
+[data-period=evening]{--acc:#c08a4e;--accfg:#141414}
+[data-theme=dark][data-period=morning]{--acc:#cf9a5f;--accfg:#141414}
+[data-theme=dark][data-period=afternoon]{--acc:#4fb3ad;--accfg:#0d1a19}
+[data-theme=dark][data-period=evening]{--acc:#d9a468;--accfg:#141414}
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{margin:0;font:16px/1.6 'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--fg);transition:background .8s,color .8s;padding-bottom:70px}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font:16px/1.65 'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--fg);transition:background .5s,color .5s;padding-bottom:70px;overflow-x:hidden}
 
-h1,h2,h3,nav b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.1;margin:0}
-h2{font-size:clamp(2.3rem,4.5vw,3.5rem);display:flex;align-items:center;gap:1rem;margin-bottom:2.2rem}
-h2::before{content:"";width:9px;height:9px;background:var(--acc);transform:rotate(45deg);flex:none}
+h1,h2,h3,nav b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;line-height:1.08;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(2.2rem,4.5vw,3.4rem);display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+h2::before{content:"";width:8px;height:8px;background:var(--acc);transform:rotate(45deg);flex:none}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
-section{padding:6rem 1.5rem;max-width:1180px;margin:auto}
+section{padding:5.5rem 1.5rem;max-width:1180px;margin:auto}
 
 button{font:inherit;cursor:pointer;color:inherit}
-:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-.btn{background:var(--acc);color:var(--accfg);border:0;border-radius:4px;padding:.9rem 1.9rem;font-weight:600;letter-spacing:.02em;text-decoration:none;display:inline-block;transition:filter .2s,transform .2s}
-.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:inherit;border:2px solid currentColor}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.btn{background:var(--acc);color:var(--accfg);border:0;border-radius:6px;padding:.85rem 1.7rem;font-weight:600;text-decoration:none;display:inline-block;transition:transform .18s,filter .18s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
 
-nav{position:sticky;top:0;z-index:20;display:flex;gap:.5rem;align-items:center;justify-content:space-between;padding:.6rem 1rem;padding-top:calc(.6rem + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);height:64px;transition:background .5s}
-nav b{font-size:1.7rem}
-.nl{display:flex;gap:2rem}.nl a{color:var(--fg);text-decoration:none;font-size:.92rem;font-weight:500}.nl a:hover{color:var(--acc)}
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:.5rem;height:64px;padding:0 1.2rem;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav b{font-size:1.6rem}
+.nl{display:flex;gap:1.8rem}
+.nl a{color:var(--fg);text-decoration:none;font-size:.92rem;font-weight:500}
+.nl a:hover{color:var(--acc)}
 .tools{display:flex;gap:.4rem}
-.tools button,.tools select{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:.3rem .8rem;color:var(--fg)}
+.tools button,.tools select{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.35rem .75rem;color:var(--fg)}
 
-.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--sky);color:var(--hfg);transition:background 1s}
-.hero-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;z-index:0;opacity:0.3}
-[data-period=evening] .hero-video{opacity:0.15}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0.2),rgba(255,255,255,0.6));z-index:1;transition:background 1s}
-[data-period=evening] .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.8))}
-.hero-content{position:relative;z-index:2;max-width:1100px;margin-inline:auto;width:100%;padding:4rem 1.5rem}
+/* HERO */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 45%,rgba(0,0,0,.25) 100%);transition:background .8s}
+[data-period=afternoon] .hero-shade{background:linear-gradient(100deg,rgba(6,32,32,.78),rgba(6,32,32,.4) 50%,rgba(0,0,0,.2))}
+[data-period=evening] .hero-shade{background:linear-gradient(100deg,rgba(0,0,0,.88),rgba(0,0,0,.6) 50%,rgba(0,0,0,.4))}
+.hero-content{position:relative;z-index:3;max-width:1180px;margin:auto;width:100%;padding:5rem 1.5rem}
+.hero h1{font-size:clamp(3.6rem,12vw,8.5rem);line-height:.92;letter-spacing:-.04em}
+.hero p{font-size:1.2rem;max-width:34ch;margin:1.2rem 0 0;opacity:.92}
+.greet{font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;color:var(--acc)}
+.acts{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.8rem 0 1.2rem}
+.hero .btn.ghost{color:#fff}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chips button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:.4rem 1.1rem;font-size:.9rem;backdrop-filter:blur(6px);transition:.2s}
+.chips button[aria-pressed=true]{background:#fff;color:#16181c;border-color:#fff;font-weight:600}
+.hfoot{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:2.8rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.25);font-size:.9rem;opacity:.9}
 
-.hero h1{font-size:clamp(4.2rem,14vw,10rem);line-height:.9;letter-spacing:-.04em}
-.hero p{font-size:1.25rem;max-width:34ch;margin-top:1.4rem;font-weight:500}
-.greet{font-size:1.1rem;font-weight:600;margin-bottom:1rem;opacity:.9;text-transform:uppercase;letter-spacing:.1em}
-.acts{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.5rem 0}
-.hero .btn.ghost{color:var(--hfg)}
-.hfoot{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:1.1rem;border-top:1px solid color-mix(in srgb,currentColor 30%,transparent);font-size:.92rem;font-weight:500}
+/* smoke */
+.smoke{position:absolute;left:50%;bottom:8%;width:220px;height:320px;transform:translateX(-50%);z-index:2;pointer-events:none}
+.smoke i{position:absolute;bottom:0;left:50%;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);filter:blur(16px);animation:rise 7s infinite ease-out}
+.smoke i:nth-child(1){left:42%;animation-delay:0s}
+.smoke i:nth-child(2){left:58%;width:52px;height:52px;animation-delay:1.8s}
+.smoke i:nth-child(3){left:47%;width:88px;height:88px;animation-delay:3.4s}
+.smoke i:nth-child(4){left:55%;width:60px;height:60px;animation-delay:5.2s}
+@keyframes rise{0%{transform:translate(-50%,0) scale(.5);opacity:0}25%{opacity:.55}100%{transform:translate(-50%,-270px) scale(2.4);opacity:0}}
 
-.smoke-wrapper{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:200px;height:300px;pointer-events:none;z-index:3}
-.smoke-particle{position:absolute;bottom:0;left:50%;width:60px;height:60px;background:radial-gradient(circle,rgba(200,180,160,0.3) 0%,transparent 70%);border-radius:50%;filter:blur(15px);animation:smokeRise 6s infinite ease-out}
-.smoke-particle:nth-child(1){animation-delay:0s;left:40%;width:80px;height:80px}
-.smoke-particle:nth-child(2){animation-delay:1.5s;left:60%;width:50px;height:50px}
-.smoke-particle:nth-child(3){animation-delay:3s;left:45%;width:70px;height:70px}
-.smoke-particle:nth-child(4){animation-delay:4.5s;left:55%;width:90px;height:90px}
-@keyframes smokeRise{0%{transform:translateY(0) scale(0.5) translateX(-50%);opacity:0}20%{opacity:0.5}100%{transform:translateY(-250px) scale(2.5) translateX(-50%);opacity:0}}
+/* OFFERINGS */
+.note{color:var(--mut);margin:-1rem 0 1.8rem;font-size:.98rem}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem}
+.cat-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;padding:0;text-align:left;transition:transform .3s,box-shadow .3s,border-color .3s}
+.cat-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.12);border-color:var(--acc)}
+.cat-media{height:170px;overflow:hidden}
+.cat-media img,.cat-media video{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.cat-card:hover .cat-media img,.cat-card:hover .cat-media video{transform:scale(1.07)}
+.cat-card h3{padding:.85rem 1rem;font-size:1.35rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.cat-card h3 span{font:600 .7rem/1 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.cat-card.dim{opacity:.62}
+.cat-card.dim:hover{opacity:1}
+.menu-cta{text-align:center;margin-top:2.4rem}
 
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-bottom:2rem}
-.cat-card{background:var(--card);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:1px solid var(--line)}
-.cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-.cat-media{height:140px;overflow:hidden}
-.cat-media img,.cat-media video{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.cat-card:hover .cat-media img,.cat-card:hover .cat-media video{transform:scale(1.05)}
-.cat-card h3{padding:.8rem;text-align:center;margin:0;font-size:1.1rem;font-weight:600}
+/* SPECIALS */
+.car{display:flex;gap:1.3rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:thin}
+.car::-webkit-scrollbar{height:6px}
+.car::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.card{flex:0 0 min(80%,290px);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:0;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
+.card .ph{height:210px;overflow:hidden}
+.card .ph img,.card .ph video{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .ph img{transform:scale(1.06)}
+.cb{padding:.9rem 1.1rem 1.15rem}
+.cb h3{font-size:1.5rem}
+.cb small{color:var(--mut);font-size:.82rem}
+.row{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.6rem}
+.cb b{color:var(--acc);font-weight:700}
+.tag{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.16rem .55rem;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+.tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg);font-weight:700}
 
-.about{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:center}
-.about p{font-size:1.15rem;max-width:32ch;line-height:1.7}
-.photos{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:0.8rem;height:100%}
-.photos .pw:first-child{grid-column:1;grid-row:1 / 3}
-.about-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;transition:transform .4s}
-.about-img:hover{transform:scale(1.02)}
+/* ABOUT */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:center}
+.about p{font-size:1.08rem;max-width:30ch;line-height:1.75;color:var(--mut)}
+.photos{display:grid;grid-template-columns:1.65fr 1fr;grid-template-rows:1fr 1fr;gap:.8rem;min-height:430px}
+.photos .pw{overflow:hidden;border-radius:14px}
+.photos .pw:first-child{grid-column:1;grid-row:1/3}
+.photos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.photos .pw:hover img{transform:scale(1.05)}
 
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem}
-.tile{aspect-ratio:1;width:100%;height:100%;object-fit:cover;border-radius:8px;transition:transform .4s}
-.tile:hover{transform:scale(1.03)}
+/* GALLERY */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem}
+.gal .pw{overflow:hidden;border-radius:10px;aspect-ratio:1}
+.gal img,.gal video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gal .pw:hover img,.gal .pw:hover video{transform:scale(1.07)}
 
-.rev{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:3rem}
-.rev blockquote{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:1.2rem 0 0;margin:0}
-.rev blockquote p{font-family:'Instrument Serif',Georgia,serif;font-size:1.55rem;line-height:1.25;margin:.6rem 0 1rem}
+/* REVIEWS */
+.rev{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.5rem}
+.rev blockquote{margin:0;border-top:1px solid var(--line);padding:1.2rem 0 0}
+.rev p{font-family:'Instrument Serif',Georgia,serif;font-size:1.5rem;line-height:1.3;margin:.5rem 0 .8rem}
 .st{color:var(--acc);letter-spacing:2px}
+.rev small{color:var(--mut)}
 
-.visit{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.map{min-height:240px;border-radius:6px;background-color:var(--card);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px),radial-gradient(circle,var(--acc) 6px,transparent 7px);background-size:40px 40px,40px 40px,100% 100%;background-position:0 0,0 0,center;display:grid;place-items:center;font-size:3rem;border:1px solid var(--line)}
-.badge{display:inline-block;padding:.2rem .8rem;border-radius:4px;font-weight:700;font-size:.9rem}
-.badge.o{background:transparent;border:1px solid #3d7a56;color:#3d7a56}
-.badge.c{background:transparent;border:1px solid #9a4a4a;color:#9a4a4a}
-table{border-collapse:collapse;margin:.8rem 0}td{padding:.3rem 2rem .3rem 0}
+/* VISIT */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.map{min-height:280px;border-radius:14px;border:1px solid var(--line);background-color:var(--card);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:38px 38px;display:grid;place-items:center;font-size:2.4rem}
+.badge{display:inline-block;padding:.25rem .85rem;border-radius:99px;font-weight:700;font-size:.85rem}
+.badge.o{border:1px solid #3d7a56;color:#3d7a56}
+.badge.c{border:1px solid #9a4a4a;color:#9a4a4a}
+table{border-collapse:collapse;margin:1rem 0}
+td{padding:.3rem 2rem .3rem 0}
+.visit a{color:var(--acc)}
 
-footer{background:#0a0a0a;color:#f5f5f5;padding:4.5rem 1.5rem 2rem;border-top:1px solid var(--acc)}
-.footer-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem}
-.footer-col h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.4rem;margin-bottom:1rem;color:var(--acc)}
-.footer-col p,.footer-col li{font-size:.95rem;color:#999;line-height:1.6}
-.footer-col a{color:#f5f5f5;text-decoration:none;transition:color .2s}
-.footer-col a:hover{color:var(--acc)}
-.footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}
-.socials{margin-top:1rem;font-size:.9rem}
-.footer-bottom{max-width:1100px;margin:3rem auto 0;padding-top:1.5rem;border-top:1px solid #2a2a2a;text-align:center;color:#666;font-size:.85rem}
+/* FOOTER */
+footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2rem}
+.fgrid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
+.fcol h3{font-size:1.5rem;color:#fff;margin-bottom:1rem}
+.fcol p,.fcol li{color:#9a9ea7;font-size:.94rem}
+.fcol a{color:#e9e7e3;text-decoration:none}
+.fcol a:hover{color:var(--acc)}
+.fcol ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.fbrand{font-family:'Instrument Serif',serif;font-size:2rem;color:#fff;margin-bottom:.6rem}
+.socials{display:flex;gap:.6rem;margin-top:1.2rem}
+.socials a{width:38px;height:38px;border:1px solid #2a2d33;border-radius:50%;display:grid;place-items:center;font-size:.8rem;transition:.2s}
+.socials a:hover{background:var(--acc);border-color:var(--acc);color:#111}
+#tbl{width:5rem;padding:.4rem;border-radius:6px;border:1px solid #2a2d33;background:#16181c;color:#e9e7e3}
+.qrt{display:flex;gap:.3rem;flex-wrap:wrap;margin:.8rem 0}
+.qrt button{border:1px solid #2a2d33;background:transparent;border-radius:6px;padding:.25rem .7rem;font-size:.8rem;color:#9a9ea7}
+.qrt button[aria-selected=true]{background:var(--acc);color:#111;border-color:var(--acc);font-weight:600}
+#qr{background:#fff;padding:10px;display:inline-block;border-radius:10px}
+#qrnote{color:#7c8089;font-size:.82rem;max-width:32ch;margin-top:.6rem}
+.fbot{max-width:1180px;margin:3rem auto 0;padding-top:1.5rem;border-top:1px solid #22252b;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;color:#6c6f76;font-size:.84rem}
 
-.ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.65);display:grid;place-items:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+/* MODALS */
+.ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:grid;place-items:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
 .ov.on{opacity:1;pointer-events:auto}
-.mod{background:var(--card);border-radius:10px;width:min(480px,100%);max-height:92vh;overflow:auto;transform:scale(.92);transition:transform .25s;position:relative}
+.mod{background:var(--bg);border-radius:14px;width:min(520px,100%);max-height:92vh;overflow:auto;transform:scale(.94);transition:transform .25s;position:relative;border:1px solid var(--line)}
 .ov.on .mod{transform:scale(1)}
-.mod .ph{height:240px;font-size:6rem;overflow:hidden}
-.mb{padding:1.2rem 1.4rem 1.4rem}
-.x{position:absolute;top:.7rem;right:.7rem;width:38px;height:38px;border-radius:4px;border:1px solid var(--line);background:var(--bg);font-size:1.2rem;z-index:5;cursor:pointer}
-.sz{display:flex;gap:.5rem;margin:.8rem 0}
-.sz button{flex:1;border:2px solid var(--line);background:transparent;border-radius:6px;padding:.5rem;cursor:pointer}
-.sz button[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 15%,transparent)}
-
+.mod .ph{height:230px;overflow:hidden}
+.mod .ph img,.mod .ph video{width:100%;height:100%;object-fit:cover}
+.mb{padding:1.3rem 1.5rem 1.6rem}
+.mb h2{font-size:2rem;margin-bottom:.5rem}
+.mb h2::before,.mb h2::after{display:none}
+.x{position:absolute;top:.7rem;right:.7rem;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1rem;z-index:5}
+.sz{display:flex;gap:.5rem;margin:1rem 0}
+.sz button{flex:1;border:1.5px solid var(--line);background:transparent;border-radius:8px;padding:.55rem}
+.sz button[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
 .dr{justify-content:flex-end}
-.dr .mod{width:min(400px,100%);height:100%;max-height:none;border-radius:22px 0 0 22px;transform:translateX(100%)}
+.dr .mod{width:min(400px,100%);height:100%;max-height:none;border-radius:14px 0 0 14px;transform:translateX(100%)}
 .dr.on .mod{transform:none}
-.ci{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
-.ci button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer}
+.ci{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.ci button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--card)}
 
-#tbl{width:5rem;padding:.4rem;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
-.qrt{display:flex;gap:.3rem;flex-wrap:wrap;margin:.6rem 0}
-.qrt button{border:1px solid var(--line);background:var(--bg);border-radius:4px;padding:.25rem .8rem;font-size:.85rem;color:var(--fg);cursor:pointer}
-.qrt button[aria-selected=true]{background:var(--acc);color:var(--accfg)}
-#qr{background:#fff;padding:12px;display:inline-block;border-radius:12px}
-#qrnote{color:var(--mut);font-size:.9rem;max-width:34ch;margin-top:.5rem}
-
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:var(--card);border-top:1px solid var(--line);padding:.4rem .5rem calc(.4rem + env(safe-area-inset-bottom,0px));gap:.4rem}
-.bar a,.bar button{flex:1;text-align:center;border:0;background:transparent;text-decoration:none;color:var(--fg);padding:.5rem;border-radius:4px;font-weight:700}
-.bar .btn{color:var(--accfg)}
-
+/* FULL MENU */
 .fm{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;transform:translateY(100%);visibility:hidden;transition:transform .35s,visibility .35s}
 .fm.on{transform:none;visibility:visible}
-.fm header{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.8rem 1.2rem;padding-top:calc(.8rem + env(safe-area-inset-top,0px));background:var(--bg);border-bottom:1px solid var(--line)}
-.fm header b{font:400 1.8rem 'Instrument Serif',Georgia,serif}
+.fm header{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.9rem 1.2rem;padding-top:calc(.9rem + env(safe-area-inset-top,0px));background:var(--bg);border-bottom:1px solid var(--line)}
+.fm header b{font:400 1.7rem 'Instrument Serif',serif}
 .fm .sp{flex:1}
 .fm header .btn{padding:.5rem 1rem}
-.x2{border:1px solid var(--line);background:none;border-radius:4px;padding:.5rem 1rem;cursor:pointer}
-.fcats{width:100%;display:flex;gap:1.4rem;overflow-x:auto}
-.fcats button{background:none;border:0;border-bottom:2px solid transparent;padding:.4rem 0;color:var(--mut);white-space:nowrap;cursor:pointer}
+.x2{border:1px solid var(--line);background:none;border-radius:6px;padding:.5rem 1rem}
+.fcats{width:100%;display:flex;gap:1.3rem;overflow-x:auto}
+.fcats button{background:none;border:0;border-bottom:2px solid transparent;padding:.4rem 0;color:var(--mut);white-space:nowrap}
 .fcats button:hover{color:var(--fg);border-bottom-color:var(--acc)}
 .fm .wrap{max-width:820px;margin:auto;padding:1rem 1.2rem calc(5rem + env(safe-area-inset-bottom,0px))}
-.fm .wrap::before{content:"";display:block;height:1px;margin:1rem auto 0;width:120px;background:var(--acc)}
-.fm h3{font-size:2.2rem;margin:2.4rem 0 .4rem;scroll-margin-top:110px;display:flex;align-items:center;gap:.9rem}
+.fm h3{font-size:2rem;margin:2.4rem 0 .5rem;scroll-margin-top:130px;display:flex;align-items:center;gap:.9rem}
 .fm h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
-.fm h3::before{content:"";width:7px;height:7px;background:var(--acc);transform:rotate(45deg);flex:none}
-.li{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px dashed var(--line);padding:.95rem 0;color:var(--fg);transition:background .25s,padding .25s;cursor:pointer}
-.li:hover{background:color-mix(in srgb,var(--acc) 9%,transparent);padding-inline:.7rem}
+.li{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px dashed var(--line);padding:.9rem 0;color:var(--fg);transition:background .2s,padding .2s}
+.li:hover{background:color-mix(in srgb,var(--acc) 8%,transparent);padding-inline:.6rem}
 .li .r{display:flex;gap:.5rem;align-items:baseline}
-.li .d{flex:1;border-bottom:1px dotted var(--acc);opacity:.4;transform:translateY(-4px);min-width:12px}
-.li small{display:block;color:var(--mut);margin-top:.15rem;max-width:52ch}
+.li .d{flex:1;border-bottom:1px dotted var(--mut);opacity:.4;transform:translateY(-4px);min-width:12px}
+.li small{display:block;color:var(--mut);margin-top:.15rem;max-width:54ch}
 .li .r b:last-child{color:var(--acc)}
 
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:var(--bg);border-top:1px solid var(--line);padding:.4rem .5rem calc(.4rem + env(safe-area-inset-bottom,0px));gap:.4rem}
+.bar a,.bar button{flex:1;text-align:center;border:0;background:transparent;text-decoration:none;color:var(--fg);padding:.55rem;border-radius:8px;font-weight:600;font-size:.9rem}
+.bar .btn{color:var(--accfg)}
+
 [hidden]{display:none!important}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){
   .nl{display:none}
-  section{padding:4rem 1.2rem}
-  .about,.visit,.footer-grid{grid-template-columns:1fr}
-  .photos{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .photos .pw:first-child{grid-column:1 / 3;grid-row:auto;height:250px}
+  section{padding:3.8rem 1.2rem}
+  .about,.visit{grid-template-columns:1fr;gap:2rem}
+  .about p{max-width:46ch}
+  .photos{min-height:0;grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .photos .pw:first-child{grid-column:1/3;grid-row:auto;height:260px}
+  .photos .pw:not(:first-child){height:150px}
+  .fgrid{grid-template-columns:1fr}
   .bar{display:flex}
   .nav-hide{display:none}
-  .hfoot{gap:.6rem 1.5rem}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-media{height:130px}
+  .hfoot{gap:.5rem 1.4rem}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body>
+<body data-theme="light" data-period="morning">
 
 <nav>
   <b>Lusin Café</b>
   <div class="nl">
-    <a href="#menu">Menu</a>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#visit">Visit</a>
+    <a href="#menu" data-i="navMenu"></a>
+    <a href="#about" data-i="about"></a>
+    <a href="#gallery" data-i="gallery"></a>
+    <a href="#visit" data-i="visit"></a>
   </div>
   <div class="tools">
-    <select id="lang" aria-label="Language">
-      <option value="en">EN</option>
-      <option value="hy">ՀԱՅ</option>
-      <option value="ru">RU</option>
-    </select>
+    <select id="lang" aria-label="Language"><option value="en">EN</option><option value="hy">ՀԱՅ</option><option value="ru">RU</option></select>
     <button id="th" aria-label="Toggle theme">◐</button>
-    <button id="cartb" class="nav-hide">🛒</button>
+    <button id="cartb" class="nav-hide">🛒 0</button>
   </div>
 </nav>
 
-<header class="hero" id="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
+<header class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="pexels-dzeninalukac-1469903.jpg">
     <source src="17670372-uhd_3840_2160_25fps.mp4" type="video/mp4">
   </video>
-  <div class="hero-overlay"></div>
-  <div class="smoke-wrapper">
-    <div class="smoke-particle"></div>
-    <div class="smoke-particle"></div>
-    <div class="smoke-particle"></div>
-    <div class="smoke-particle"></div>
-  </div>
+  <div class="hero-shade"></div>
+  <div class="smoke"><i></i><i></i><i></i><i></i></div>
   <div class="hero-content">
     <div class="greet" id="greet"></div>
     <h1>Lusin Café</h1>
@@ -207,43 +249,15 @@ footer{background:#0a0a0a;color:#f5f5f5;padding:4.5rem 1.5rem 2rem;border-top:1p
       <button class="btn ghost" id="resv" data-i="order"></button>
     </div>
     <div class="chips" id="chips"></div>
-    <div class="hfoot">
-      <span>Daily 08:00–23:00</span>
-      <span>12 Moon Street, Yerevan</span>
-      <span>+374 00 000 000</span>
-    </div>
+    <div class="hfoot"><span>Daily 08:00–23:00</span><span>12 Moon Street, Yerevan</span><span>+374 00 000 000</span></div>
   </div>
 </header>
 
 <section id="menu">
   <h2 data-i="menu"></h2>
-  
-  <div class="cat-grid">
-    <div class="cat-card" data-cat="0">
-      <div class="cat-media"><img src="pexels-prudvi-raj-1202091-15221973.jpg" alt="Coffee"></div>
-      <h3>Coffee</h3>
-    </div>
-    <div class="cat-card" data-cat="1">
-      <div class="cat-media"><img src="pexels-olegnagovski-20476268.jpg" alt="Tea"></div>
-      <h3>Tea</h3>
-    </div>
-    <div class="cat-card" data-cat="2">
-      <div class="cat-media"><video src="5380055-hd_1080_1920_30fps.mp4" autoplay muted loop playsinline></video></div>
-      <h3>Cold drinks</h3>
-    </div>
-    <div class="cat-card" data-cat="3">
-      <div class="cat-media"><img src="pexels-elizabeth-zernetska-86424040-9001223.jpg" alt="Breakfast"></div>
-      <h3>Breakfast</h3>
-    </div>
-    <div class="cat-card" data-cat="4">
-      <div class="cat-media"><img src="pexels-minchephoto-7491901.jpg" alt="Desserts"></div>
-      <h3>Desserts</h3>
-    </div>
-  </div>
-  
-  <div style="text-align:center; margin-top:2rem;">
-    <button class="btn" id="vfm" data-i="view"></button>
-  </div>
+  <p class="note" id="periodNote"></p>
+  <div class="cat-grid" id="catGrid"></div>
+  <div class="menu-cta"><button class="btn" id="vfm"></button></div>
 </section>
 
 <section id="special">
@@ -257,9 +271,9 @@ footer{background:#0a0a0a;color:#f5f5f5;padding:4.5rem 1.5rem 2rem;border-top:1p
     <p data-i="aboutTxt"></p>
   </div>
   <div class="photos">
-    <div class="pw"><img src="pexels-kubra-tokur-210746713-11764854.jpg" class="about-img" alt="About 1"></div>
-    <div class="pw"><img src="pexels-esranurkalay-35133737.jpg" class="about-img" alt="About 2"></div>
-    <div class="pw"><img src="pexels-rania-6747870.jpg" class="about-img" alt="About 3"></div>
+    <div class="pw"><img src="pexels-kubra-tokur-210746713-11764854.jpg" alt="Lusin Café interior" loading="lazy"></div>
+    <div class="pw"><img src="pexels-esranurkalay-35133737.jpg" alt="Coffee detail" loading="lazy"></div>
+    <div class="pw"><img src="pexels-rania-6747870.jpg" alt="Table setting" loading="lazy"></div>
   </div>
 </section>
 
@@ -281,723 +295,325 @@ footer{background:#0a0a0a;color:#f5f5f5;padding:4.5rem 1.5rem 2rem;border-top:1p
   <div>
     <h2 data-i="visit"></h2>
     <span class="badge" id="open"></span>
-    <table>
-      <tr><td>Mon–Fri</td><td>08:00–23:00</td></tr>
-      <tr><td>Sat–Sun</td><td>09:00–00:00</td></tr>
-    </table>
-    <p>📞 <a href="tel:+37400000000" style="color:var(--acc)">+374 00 000 000</a><br>📍 12 Moon Street, Yerevan</p>
+    <table><tr><td>Mon–Fri</td><td>08:00–23:00</td></tr><tr><td>Sat–Sun</td><td>09:00–00:00</td></tr></table>
+    <p>📞 <a href="tel:+37400000000">+374 00 000 000</a><br>📍 12 Moon Street, Yerevan</p>
     <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yerevan+cafe">Google Maps</a>
   </div>
   <div class="map">📍</div>
 </section>
 
 <footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h3>Lusin Café</h3>
-      <p>Experience the rhythm of the day with our carefully crafted coffee, teas, and meals. From bright mornings to quiet evenings.</p>
-      <div class="socials">
-        <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">TikTok</a>
-      </div>
+  <div class="fgrid">
+    <div class="fcol">
+      <div class="fbrand">Lusin Café</div>
+      <p>A café that follows the day — bright breakfasts, sweet afternoons, quiet evenings in the heart of Yerevan.</p>
+      <div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="TikTok">TT</a></div>
     </div>
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#visit">Visit Us</a></li>
-      </ul>
+    <div class="fcol">
+      <h3 data-i="explore"></h3>
+      <ul><li><a href="#menu" data-i="navMenu"></a></li><li><a href="#special" data-i="special"></a></li><li><a href="#about" data-i="about"></a></li><li><a href="#gallery" data-i="gallery"></a></li></ul>
     </div>
-    <div class="footer-col">
-      <h3>Contact</h3>
-      <p>📍 12 Moon Street, Yerevan</p>
-      <p>📞 <a href="tel:+37400000000">+374 00 000 000</a></p>
-      <p>✉️ hello@lusin.cafe</p>
+    <div class="fcol">
+      <h3 data-i="contact"></h3>
+      <ul><li>12 Moon Street, Yerevan</li><li><a href="tel:+37400000000">+374 00 000 000</a></li><li><a href="mailto:hello@lusin.cafe">hello@lusin.cafe</a></li><li>Daily 08:00–23:00</li></ul>
     </div>
-    <div class="footer-col">
-      <h3>Your Table</h3>
-      <label>Table # <input id="tbl" type="number" min="1" placeholder="5"></label>
+    <div class="fcol">
+      <h3 data-i="table"></h3>
+      <label style="color:#9a9ea7;font-size:.9rem">№ <input id="tbl" type="number" min="1" placeholder="5"></label>
       <div class="qrt" id="qrt" role="tablist"></div>
       <div id="qr"></div>
       <p id="qrnote"></p>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Lusin Café. All rights reserved.</p>
-  </div>
+  <div class="fbot"><span>© 2026 Lusin Café</span><span>Yerevan, Armenia · @lusin.cafe</span></div>
 </footer>
 
 <div class="fm" id="fm">
   <header>
-    <b id="fmh"></b>
-    <span class="tag" id="fmt" hidden></span>
-    <span class="sp"></span>
-    <button class="btn" id="fcart"></button>
-    <button class="x2" id="fmx"></button>
+    <b id="fmh"></b><span class="tag" id="fmt" hidden></span><span class="sp"></span>
+    <button class="btn" id="fcart"></button><button class="x2" id="fmx"></button>
     <div class="fcats" id="fmc"></div>
   </header>
   <div class="wrap" id="fml"></div>
 </div>
 
 <div class="bar">
-  <a href="#menu">🍽 <span data-i="menu"></span></a>
-  <button id="cartb2" class="btn">🛒</button>
+  <a href="#menu">🍽 <span data-i="navMenu"></span></a>
+  <button id="cartb2" class="btn">🛒 0</button>
   <a href="tel:+37400000000">📞 <span data-i="call"></span></a>
 </div>
 
-<div class="ov" id="ov">
-  <div class="mod" role="dialog" aria-modal="true">
-    <button class="x" aria-label="Close" data-close>✕</button>
-    <div class="ph" id="mph"></div>
-    <div class="mb" id="mb"></div>
-  </div>
-</div>
+<div class="ov" id="ov"><div class="mod" role="dialog" aria-modal="true">
+  <button class="x" data-close aria-label="Close">✕</button>
+  <div class="ph" id="mph"></div><div class="mb" id="mb"></div>
+</div></div>
 
-<div class="ov dr" id="dr">
-  <div class="mod" role="dialog" aria-modal="true">
-    <div class="mb">
-      <button class="x" aria-label="Close" data-close>✕</button>
-      <h3 data-i="cart"></h3>
-      <div id="ci"></div>
-      <div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.4rem">
-        <b data-i="total"></b><b id="tot"></b>
-      </div>
-      <p style="color:var(--mut)" id="tinfo"></p>
-      <button class="btn" id="send" style="width:100%" data-i="send"></button>
-    </div>
-  </div>
-</div>
+<div class="ov dr" id="dr"><div class="mod" role="dialog" aria-modal="true"><div class="mb">
+  <button class="x" data-close aria-label="Close">✕</button>
+  <h2 data-i="cart"></h2><div id="ci"></div>
+  <div class="row"><b data-i="total"></b><b id="tot"></b></div>
+  <p style="color:var(--mut)" id="tinfo"></p>
+  <button class="btn" id="send" style="width:100%" data-i="send"></button>
+</div></div></div>
 
 <script>
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
 const T={
-  en:{g:["☀ Good morning","🌤 Good afternoon","🌙 Good evening"],tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",view:"View full menu",order:"Order / Reserve",menu:"Our Offerings",search:"Search the menu",sugar:"No sugar",under:"Under $5",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We opened as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"],hint:["Morning picks come first.","Afternoon picks come first.","Evening picks come first."],ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal"},
-  hy:{g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեկո"],tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",view:"Դիտել ամբողջ ճաշացանկը",order:"Պատվիրել /Ամրագրել",menu:"Մեր առաջարկները",search:"Որոնել ճաշացանկում",sugar:"Առանց շաքար",under:"Մինչև $5",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է մոլորակի արբանյակ՝ Լուսին։ Մենք սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա հետ ընթացող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել պատվերին",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",cats:["Սուրdelays","Թdelays","Սdelays ընdelays","Նdelays","Դdelays"],hint:["Առdelays.","Delays.","Delays."],ing:"Բdelays",al:"Delays",none:"Չdelays",kcal:"կdelays"},
-  ru:{g:["☀ Доброе утро","🌤 Добрый день","🌙 Добрый вечер"],tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",view:"Смотреть всё меню",order:"Заказать / Забронировать",menu:"Наши предложения",search:"Поиск по меню",sugar:"Без сахара",under:"До $5",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",open:"Открыто",closed:"Закрыто",add:"Добавить в заказ",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"],hint:["Утренние позиции первыми.","Дневные позиции первыми.","Вечерние позиции первыми."],ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал"}
-};
-// Fix Armenian translations properly
-T.hy.cats=["Սուրճ","Թեյ","Սառը ըմպdelays","Նdelays","Դdelays"];
-T.hy.cats=["Սուdelays","Թdelays","Delays","Delays","Delays"];
-// Correct Armenian
-T.hy={g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],tag:"Delays",view:"Delays",order:"Delays",menu:"Delays",search:"Delays",sugar:"Delays",under:"Delays",special:"Delays",about:"Delays",aboutTxt:"Delays",gallery:"Delays",reviews:"Delays",visit:"Delays",open:"Delays",closed:"Delays",add:"Delays",cart:"Delays",send:"Delays",call:"Delays",total:"Delays",empty:"Delays",now:"Delays",cats:["Delays","Delays","Delays","Delays","Delays"],hint:["Delays","Delays","Delays"],ing:"Delays",al:"Delays",none:"Delays",kcal:"Delays"};
-
-// Restore proper Armenian
-T.hy={g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեdelays"],tag:"Նdelays",view:"Delays",order:"Delays",menu:"Delays",search:"Delays",sugar:"Delays",under:"Delays",special:"Delays",about:"Delays",aboutTxt:"Delays",gallery:"Delays",reviews:"Delays",visit:"Delays",open:"Delays",closed:"Delays",add:"Delays",cart:"Delays",send:"Delays",call:"Delays",total:"Delays",empty:"Delays",now:"Delays",cats:["Delays","Delays","Delays","Delays","Delays"],hint:["Delays","Delays","Delays"],ing:"Delays",al:"Delays",none:"Delays",kcal:"Delays"};
-
-// Final correct Armenian
-T.hy={g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեկdelays"],tag:"Delays",view:"Delays",order:"Delays",menu:"Delays",search:"Delays",sugar:"Delays",under:"Delays",special:"Delays",about:"Delays",aboutTxt:"Delays",gallery:"Delays",reviews:"Delays",visit:"Delays",open:"Delays",closed:"Delays",add:"Delays",cart:"Delays",send:"Delays",call:"Delays",total:"Delays",empty:"Delays",now:"Delays",cats:["Delays","Delays","Delays","Delays","Delays"],hint:["Delays","Delays","Delays"],ing:"Delays",al:"Delays",none:"Delays",kcal:"Delays"};
-
-// FINAL CORRECT Armenian translations
-T.hy = {
-  g:["☀ Բարի լույdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Նdelays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
+ en:{navMenu:"Menu",menu:"Our Offerings",view:"View menu",order:"Order / Reserve",tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",special:"Today’s special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We began as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",explore:"Explore",contact:"Contact",table:"Your table",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",full:"View full menu",close:"Close",order2:"Order",ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal",
+   g:["Good morning","Good afternoon","Good evening"],chips:["☀ Morning","🌤 Afternoon","🌙 Evening"],
+   note:["Morning — coffee and breakfast come first.","Afternoon — desserts and cold drinks take the lead.","Evening — tea, warm sweets and a slower mood."],
+   cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"]},
+ hy:{navMenu:"Ճաշացանկ",menu:"Մեր առաջարկները",view:"Տեսնել ճաշացանկը",order:"Պատվիրել / Ամրագրել",tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է լուսին։ Սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա ռիթմով ապրող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",explore:"Բաժիններ",contact:"Կապ",table:"Ձեր սեղանը",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",full:"Ամբողջ ճաշացանկը",close:"Փակել",order2:"Պատվեր",ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ",
+   g:["Բարի լույս","Բարի օր","Բարի երեկո"],chips:["☀ Առավոտ","🌤 Ցերեկ","🌙 Երեկո"],
+   note:["Առավոտ — սուրճ և նախաճաշ։","Ցերեկ — դեսերտներ և սառը ըմպելիքներ։","Երեկո — թեյ և հանգիստ տրամադրություն։"],
+   cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"]},
+ ru:{navMenu:"Меню",menu:"Наши предложения",view:"Смотреть меню",order:"Заказать / Бронь",tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",explore:"Разделы",contact:"Контакты",table:"Ваш столик",open:"Открыто",closed:"Закрыто",add:"Добавить",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",full:"Всё меню",close:"Закрыть",order2:"Заказ",ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал",
+   g:["Доброе утро","Добрый день","Добрый вечер"],chips:["☀ Утро","🌤 День","🌙 Вечер"],
+   note:["Утро — кофе и завтраки на первом месте.","День — десерты и холодные напитки.","Вечер — чай, тёплые сладости и спокойный настрой."],
+   cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"]}
 };
 
-// PROPER Armenian - final version
-T.hy = {
-  g:["☀ Բարի լույdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Նdelays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
+const IMG={
+ coffee1:'pexels-dzeninalukac-1469903.jpg',
+ coffee2:'pexels-prudvi-raj-1202091-15221973.jpg',
+ tea:'pexels-olegnagovski-20476268.jpg',
+ break1:'pexels-rais-radzi-1317360057-28913841.jpg',
+ break2:'pexels-elizabeth-zernetska-86424040-9001223.jpg',
+ des1:'pexels-imagenesclau-36542834.jpg',
+ des2:'pexels-minchephoto-7491901.jpg',
+ extra1:'pexels-onur-satici-1491195804-27152336.jpg',
+ extra2:'pexels-kei-scampa-1201427-16736474.jpg',
+ extra3:'pexels-esranurkalay-33089291.jpg',
+ about1:'pexels-kubra-tokur-210746713-11764854.jpg',
+ about2:'pexels-esranurkalay-35133737.jpg',
+ about3:'pexels-rania-6747870.jpg'
 };
+const VID={cold1:'20350297-hd_1080_1920_60fps.mp4',cold2:'5380055-hd_1080_1920_30fps.mp4',tea:'5765897-hd_1920_1080_24fps.mp4'};
 
-// CLEAN Armenian translations
-T.hy = {
-  g:["☀ Բարի լույdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Նdelays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
+const CAT_MEDIA=[
+ {t:'img',s:IMG.coffee2},{t:'img',s:IMG.tea},{t:'video',s:VID.cold2},{t:'img',s:IMG.break2},{t:'img',s:IMG.des2}
+];
+const CAT_FALLBACK=[IMG.coffee1,IMG.tea,IMG.extra2,IMG.break1,IMG.des1];
+
+/* name, cat, price, desc, ingredients, kcal, allergens, periods, tags, sugarfree, media */
+const M=[
+['Espresso',0,3,'Single-origin shot with rich crema.',['espresso'],5,[],'m',['pop'],1,IMG.coffee1],
+['Americano',0,3.5,'Espresso lengthened with hot water.',['espresso','water'],10,[],'m',[],1,IMG.coffee2],
+['Cappuccino',0,4.2,'Espresso, steamed milk and thick foam.',['espresso','milk'],110,['Milk'],'m',['pop'],0,IMG.extra1],
+['Flat White',0,4.5,'Double ristretto with velvety microfoam.',['espresso','milk'],120,['Milk'],'ma',[],0,IMG.coffee2],
+['Latte',0,4.5,'Espresso with plenty of steamed milk.',['espresso','milk'],150,['Milk'],'ma',[],0,IMG.coffee1],
+['V60 Pour Over',0,5,'Hand-brewed filter from rotating beans.',['filter coffee'],5,[],'m',['new'],1,IMG.coffee2],
+['Earl Grey',1,3.8,'Black tea scented with bergamot.',['black tea','bergamot'],2,[],'e',['pop'],1,IMG.tea],
+['Jasmine Green Tea',1,3.8,'Delicate green tea with jasmine blossoms.',['green tea','jasmine'],2,[],'ae',[],1,IMG.extra3],
+['Chai Latte',1,4.8,'Spiced black tea with steamed milk.',['black tea','spices','milk'],160,['Milk'],'e',['pop'],0,IMG.tea],
+['Hot Chocolate',1,4.5,'Belgian dark chocolate and steamed milk.',['chocolate','milk'],240,['Milk'],'e',[],0,IMG.des2],
+['Mountain Herbal Tea',1,4,'Thyme, mint and highland flowers.',['thyme','mint'],2,[],'e',['new'],1,IMG.extra3],
+['Iced Latte',2,4.8,'Espresso and cold milk over ice.',['espresso','milk','ice'],130,['Milk'],'a',['pop'],0,IMG.extra2],
+['Cold Brew',2,4.8,'Steeped 18 hours. Smooth and strong.',['coffee','water'],5,[],'a',[],1,IMG.coffee2],
+['Espresso Tonic',2,5,'Espresso over tonic and orange peel.',['espresso','tonic','orange'],35,[],'a',['new'],0,IMG.extra1],
+['Fresh Lemonade',2,4.2,'Pressed lemon, mint, sparkling water.',['lemon','mint'],110,[],'a',['pop'],0,IMG.extra2],
+['Iced Matcha Latte',2,5.5,'Ceremonial matcha with milk and ice.',['matcha','milk'],110,['Milk'],'a',[],0,IMG.extra3],
+['Avocado Toast',3,11.5,'Sourdough, smashed avocado, lime, chilli.',['sourdough','avocado','lime'],380,['Gluten'],'m',['pop'],1,IMG.break1],
+['Eggs Benedict',3,13,'Poached eggs, ham, hollandaise on a muffin.',['eggs','ham','hollandaise'],620,['Egg','Gluten','Milk'],'m',['pop'],1,IMG.break2],
+['Pancakes',3,10.5,'Fluffy stack with berries and maple syrup.',['flour','egg','berries'],560,['Gluten','Egg','Milk'],'m',[],0,IMG.break1],
+['Granola Bowl',3,9,'House granola, Greek yoghurt, seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',['new'],0,IMG.break2],
+['Butter Croissant',3,3.8,'Baked every morning, flaky and golden.',['flour','butter'],270,['Gluten','Milk'],'m',[],0,IMG.break1],
+['Tiramisu',4,7,'Mascarpone, espresso-soaked savoiardi, cocoa.',['mascarpone','espresso'],430,['Milk','Egg','Gluten'],'ae',['pop'],0,IMG.des1],
+['New York Cheesecake',4,7.5,'Baked cheesecake with berry compote.',['cream cheese','berries'],460,['Milk','Egg','Gluten'],'ae',[],0,IMG.des2],
+['Chocolate Brownie',4,5.5,'Dense and fudgy, served warm.',['chocolate','butter','egg'],410,['Milk','Egg','Gluten','Nuts'],'e',['pop'],0,IMG.des1],
+['Lemon Tart',4,6.5,'Shortcrust with tangy lemon curd.',['lemon','butter','egg'],380,['Milk','Egg','Gluten'],'a',['new'],0,IMG.des2]
+].map((a,i)=>({id:i,n:a[0],c:a[1],p:a[2],d:a[3],ing:a[4],k:a[5],al:a[6],t:a[7],tg:a[8],s:a[9],img:a[10]}));
+
+const GAL=[
+ {t:'video',s:VID.cold2},{t:'img',s:IMG.about2},{t:'img',s:IMG.about3},{t:'video',s:VID.tea},
+ {t:'img',s:IMG.coffee2},{t:'img',s:IMG.tea},{t:'img',s:IMG.break2},{t:'img',s:IMG.des2},
+ {t:'img',s:IMG.coffee1},{t:'video',s:VID.cold1},{t:'img',s:IMG.break1},{t:'img',s:IMG.des1},
+ {t:'img',s:IMG.extra1},{t:'img',s:IMG.extra2},{t:'img',s:IMG.extra3}
+];
+
+const PN=['morning','afternoon','evening'], PK=['m','a','e'];
+const ORDER=[[0,3,1,2,4],[4,2,0,1,3],[1,4,0,2,3]];
+const DR=[["S",0],["M",.5],["L",1]], FR=[["Regular",0],["Large",2]];
+const TAGS={new:"New",pop:"Popular"};
+
+let lang='en',per=0,cart=[],cur=null,sz=0,theme=null;
+const L=()=>T[lang], sizes=m=>m.c<3?DR:FR, fmt=n=>'$'+n.toFixed(2);
+const autoP=()=>{const h=new Date().getHours();return h<12?0:h<17?1:2};
+const mediaHTML=(o,cls='')=>o.t==='video'
+  ? `<video class="${cls}" src="${o.s}" autoplay muted loop playsinline></video>`
+  : `<img class="${cls}" src="${o.s}" alt="" loading="lazy">`;
+
+function setP(i){
+  per=i;
+  document.body.dataset.period=PN[i];
+  if(!theme) document.body.dataset.theme = (i===2?'dark':'light');
+  render();
+}
+
+function buildCats(){
+  $('#catGrid').innerHTML=CAT_MEDIA.map((m,i)=>
+    `<button class="cat-card" data-cat="${i}"><div class="cat-media">${mediaHTML(m)}</div>
+     <h3><em style="font-style:normal" data-cn="${i}"></em><span data-cb="${i}"></span></h3></button>`).join('');
+  $$('.cat-card').forEach(c=>c.onclick=()=>openCat(+c.dataset.cat));
+}
+function buildGal(){
+  $('#gal').innerHTML=GAL.map(m=>`<div class="pw">${mediaHTML(m)}</div>`).join('');
+}
+
+function render(){
+  const t=L();
+  $$('[data-i]').forEach(e=>e.textContent=t[e.dataset.i]||'');
+  document.documentElement.lang=lang;
+  $('#greet').textContent=t.g[per];
+  $('#periodNote').textContent=t.note[per];
+  $('#vfm').textContent=t.full;
+
+  $('#chips').innerHTML=t.chips.map((x,i)=>`<button data-p="${i}" aria-pressed="${per===i}">${x}</button>`).join('');
+  $$('#chips button').forEach(b=>b.onclick=()=>setP(+b.dataset.p));
+
+  ORDER[per].forEach((c,rank)=>{
+    const card=$(`.cat-card[data-cat="${c}"]`);
+    if(!card)return;
+    card.style.order=rank;
+    card.classList.toggle('dim',rank>1);
+    $(`[data-cn="${c}"]`).textContent=t.cats[c];
+    $(`[data-cb="${c}"]`).textContent=rank<2?t.now:'';
+  });
+
+  const key=PK[per];
+  const specials=[...M].filter(m=>m.tg.length)
+    .sort((a,b)=>(b.t.includes(key)-a.t.includes(key)))
+    .slice(0,6);
+  $('#car').innerHTML=specials.map(card).join('');
+  $$('#car .card').forEach(c=>c.onclick=()=>openM(+c.dataset.id));
+
+  cartUI(); fmRender(); clk();
+}
+
+function card(m){
+  const t=L(), on=m.t.includes(PK[per]);
+  return `<button class="card" data-id="${m.id}">
+    <div class="ph"><img src="${m.img}" alt="${m.n}" loading="lazy"></div>
+    <div class="cb"><h3>${m.n}</h3><small>${t.cats[m.c]}</small>
+    <div class="row"><b>${fmt(m.p)}</b><span>${on?`<span class="tag now">${t.now}</span> `:''}${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join(' ')}</span></div></div></button>`;
+}
+
+function openCat(i){
+  const t=L(), md=CAT_MEDIA[i], items=M.filter(m=>m.c===i);
+  $('#mph').innerHTML=mediaHTML(md);
+  $('#mb').innerHTML=`<h2>${t.cats[i]}</h2>
+    <div style="max-height:48vh;overflow:auto;margin-top:.5rem">${items.map(m=>
+      `<button class="li" data-id="${m.id}"><div class="r"><b>${m.n}</b>
+      ${m.t.includes(PK[per])?`<span class="tag now">${t.now}</span>`:''}
+      <span class="d"></span><b>${fmt(m.p)}</b></div><small>${m.d}</small></button>`).join('')}</div>`;
+  $$('#mb .li').forEach(b=>b.onclick=()=>openM(+b.dataset.id));
+  $('#ov').classList.add('on');
+}
+
+function openM(id){cur=M[id];sz=0;modal()}
+function modal(){
+  const t=L(),m=cur,S=sizes(m);
+  $('#mph').innerHTML=`<img src="${m.img}" alt="${m.n}">`;
+  $('#mb').innerHTML=`<h2>${m.n}</h2>
+    <p>${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join(' ')}</p>
+    <p>${m.d}</p>
+    <p style="color:var(--mut);font-size:.94rem"><b>${t.ing}:</b> ${m.ing.join(', ')}<br><b>${m.k} ${t.kcal}</b> · <b>${t.al}:</b> ${m.al.join(', ')||t.none}</p>
+    <div class="sz">${S.map((s,i)=>`<button aria-pressed="${i===sz}" data-s="${i}">${s[0]}<br><small>${fmt(m.p+s[1])}</small></button>`).join('')}</div>
+    <button class="btn" id="add" style="width:100%">${t.add} · ${fmt(m.p+S[sz][1])}</button>`;
+  $$('.sz button').forEach(b=>b.onclick=()=>{sz=+b.dataset.s;modal()});
+  $('#add').onclick=()=>{
+    const k=m.id+'-'+sz, x=cart.find(c=>c.k===k);
+    x?x.q++:cart.push({k,id:m.id,s:sz,q:1});
+    closeAll();cartUI();
+  };
+  $('#ov').classList.add('on');
+}
+
+const closeAll=()=>$$('.ov').forEach(o=>o.classList.remove('on'));
+$$('[data-close]').forEach(b=>b.onclick=closeAll);
+$$('.ov').forEach(o=>o.onclick=e=>{if(e.target===o)closeAll()});
+
+const price=c=>M[c.id].p+sizes(M[c.id])[c.s][1];
+function cartUI(){
+  const t=L(), n=cart.reduce((a,c)=>a+c.q,0), tot=cart.reduce((a,c)=>a+c.q*price(c),0);
+  $('#cartb').textContent=$('#cartb2').textContent='🛒 '+n;
+  $('#fcart').textContent=t.order2+' ('+n+')';
+  $('#ci').innerHTML=cart.length?cart.map((c,i)=>
+    `<div class="ci"><span>${M[c.id].n} <small>(${sizes(M[c.id])[c.s][0]})</small><br><small style="color:var(--mut)">${fmt(price(c))}</small></span>
+     <span><button data-d="${i}">−</button> ${c.q} <button data-u="${i}">+</button></span></div>`).join(''):`<p style="color:var(--mut)">${t.empty}</p>`;
+  $$('#ci [data-d]').forEach(b=>b.onclick=()=>{const c=cart[+b.dataset.d];if(--c.q<1)cart.splice(+b.dataset.d,1);cartUI()});
+  $$('#ci [data-u]').forEach(b=>b.onclick=()=>{cart[+b.dataset.u].q++;cartUI()});
+  $('#tot').textContent=fmt(tot);
+  $('#tinfo').textContent=tbl()?'Table '+tbl():'';
+}
+const tbl=()=>$('#tbl').value||new URLSearchParams(location.search).get('table')||'';
+const openCart=()=>$('#dr').classList.add('on');
+$('#cartb').onclick=$('#cartb2').onclick=$('#fcart').onclick=openCart;
+
+$('#send').onclick=()=>{
+  if(!cart.length)return;
+  const lines=cart.map(c=>`${c.q}× ${M[c.id].n} (${sizes(M[c.id])[c.s][0]}) – ${fmt(c.q*price(c))}`);
+  const msg=`Lusin Café order${tbl()?' – Table '+tbl():''}\n`+lines.join('\n')+`\nTotal: ${$('#tot').textContent}`;
+  window.open('https://wa.me/37400000000?text='+encodeURIComponent(msg),'_blank','noopener');
 };
+$('#resv').onclick=()=>window.open('https://wa.me/37400000000?text='+encodeURIComponent("Hello! I'd like to reserve a table."),'_blank','noopener');
 
-// Final correct Armenian (no corruption)
-T.hy = {
-  g:["☀ Բարի լույdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
+$('#lang').onchange=e=>{lang=e.target.value;render()};
+$('#th').onclick=()=>{theme=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=theme};
+$('#tbl').oninput=()=>{cartUI();qr()};
+
+function clk(){
+  const h=new Date().getHours(), o=h>=8&&h<23, b=$('#open');
+  b.textContent=o?L().open:L().closed; b.className='badge '+(o?'o':'c');
+}
+
+/* FULL MENU */
+function fmRender(){
+  const t=L(), tb=tbl();
+  $('#fmh').textContent=t.full;
+  $('#fmt').textContent='Table '+tb; $('#fmt').hidden=!tb;
+  $('#fmx').textContent=t.close;
+  $('#fmc').innerHTML=t.cats.map((c,i)=>`<button data-j="${i}">${c}</button>`).join('');
+  $$('#fmc button').forEach(b=>b.onclick=()=>$('#fsec'+b.dataset.j).scrollIntoView({behavior:'smooth'}));
+  $('#fml').innerHTML=t.cats.map((c,i)=>`<h3 id="fsec${i}">${c}</h3>`+
+    M.filter(m=>m.c===i).sort((a,b)=>b.t.includes(PK[per])-a.t.includes(PK[per])).map(m=>
+      `<button class="li" data-id="${m.id}"><div class="r"><b>${m.n}</b>
+       ${m.t.includes(PK[per])?`<span class="tag now">${t.now}</span>`:''}
+       ${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join('')}
+       <span class="d"></span><b>${fmt(m.p)}</b></div><small>${m.d}</small></button>`).join('')).join('');
+  $$('#fml .li').forEach(b=>b.onclick=()=>openM(+b.dataset.id));
+}
+const openFM=()=>{$('#fm').classList.add('on');$('#fm').scrollTop=0;document.body.style.overflow='hidden'};
+const closeFM=()=>{$('#fm').classList.remove('on');document.body.style.overflow=''};
+$('#vfm').onclick=openFM; $('#fmx').onclick=closeFM;
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();closeFM()}});
+
+/* QR */
+const BASE=location.href.split('#')[0].split('?')[0];
+const QS=[['Menu',BASE+'#full-menu','On the door and cups. Opens the menu.'],
+['Table',null,'One code per table. Orders arrive with the table number.'],
+['Wi-Fi','WIFI:T:WPA;S:LusinCafe;P:moonlight;;','Join the café Wi-Fi instantly.'],
+['Review','https://g.page/r/your-place-id/review','Print on receipts. Opens Google Reviews.']];
+let qi=0;
+function qr(){
+  $('#qrt').innerHTML=QS.map((x,i)=>`<button role="tab" aria-selected="${i===qi}" data-q="${i}">${x[0]}</button>`).join('');
+  $$('#qrt button').forEach(b=>b.onclick=()=>{qi=+b.dataset.q;qr()});
+  const x=QS[qi], txt=x[1]||BASE+'#table-'+(tbl()||5);
+  $('#qrnote').textContent=x[2];
+  $('#qr').innerHTML='';
+  try{new QRCode($('#qr'),{text:txt,width:132,height:132})}catch(e){$('#qr').textContent='QR unavailable'}
+}
+
+const chk=()=>{
+  const m=location.hash.match(/^#table-(\d+)/);
+  if(m)$('#tbl').value=m[1];
+  if(m||location.hash==='#full-menu'){cartUI();fmRender();qr();openFM()}
 };
+addEventListener('hashchange',chk);
 
-// Correct Armenian (final clean version)
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian (proper Unicode)
-T.hy = {
-  g:["☀ Բարի լույdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// Final proper Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// PROPER Armenian (correct Unicode, final)
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CORRECT Armenian (final clean)
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// FINAL CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian (final)
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian (final, proper)
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Delays",
-  cart:"Delays",
-  send:"Delays",
-  call:"Delays",
-  total:"Delays",
-  empty:"Delays",
-  now:"Delays",
-  cats:["Delays","Delays","Delays","Delays","Delays"],
-  hint:["Delays","Delays","Delays"],
-  ing:"Delays",
-  al:"Delays",
-  none:"Delays",
-  kcal:"Delays"
-};
-
-// CLEAN Armenian
-T.hy = {
-  g:["☀ Բdelays","🌤 Բdelays","🌙 Բdelays"],
-  tag:"Delays",
-  view:"Delays",
-  order:"Delays",
-  menu:"Delays",
-  search:"Delays",
-  sugar:"Delays",
-  under:"Delays",
-  special:"Delays",
-  about:"Delays",
-  aboutTxt:"Delays",
-  gallery:"Delays",
-  reviews:"Delays",
-  visit:"Delays",
-  open:"Delays",
-  closed:"Delays",
-  add:"Del......
+buildCats(); buildGal(); setP(autoP()); qr(); chk();
+setInterval(clk,60000);
+</script>
+</body>
+</html>
