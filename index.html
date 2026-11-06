@@ -73,7 +73,7 @@ body.loaded .intro-bottom{transform:translateY(100%)}
 @keyframes smokeRise{0%{transform:translateY(0) scale(0.5) translateX(-50%);opacity:0}20%{opacity:0.5}100%{transform:translateY(-250px) scale(2.5) translateX(-50%);opacity:0}}
 
 /* Categories under Menu */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-bottom:3rem}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-bottom:2rem}
 .cat-card{background:var(--card);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:1px solid var(--line)}
 .cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
 .cat-media{height:140px;overflow:hidden}
@@ -81,33 +81,10 @@ body.loaded .intro-bottom{transform:translateY(100%)}
 .cat-card:hover .cat-media img,.cat-card:hover .cat-media video{transform:scale(1.05)}
 .cat-card h3{padding:.8rem;text-align:center;margin:0;font-size:1.1rem;font-weight:600}
 
-/* Menu & Filters */
-.filters{display:flex;gap:1.2rem;align-items:center;margin-bottom:1.6rem;flex-wrap:wrap}
-#q{flex:1;min-width:160px;padding:.55rem 1rem;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit}
-.tabs{display:flex;gap:2rem;border-bottom:1px solid var(--line);margin-bottom:1.4rem;overflow-x:auto;padding-bottom:2px}
-.tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:.8rem 0;color:var(--mut);font-weight:500;font-size:1rem;white-space:nowrap}
-.tabs button[aria-selected=true]{background:none;color:var(--fg);border-bottom-color:var(--acc)}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2.4rem 1.6rem}
-.card{background:none;border:0;border-radius:0;cursor:pointer;text-align:left;padding:0;display:block;width:100%}
-.pw{border-radius:6px;overflow:hidden}
-.ph{height:200px;display:grid;place-items:center;font-size:4.5rem;background:linear-gradient(160deg,color-mix(in srgb,var(--acc) 24%,var(--card)),color-mix(in srgb,var(--acc) 6%,var(--bg)));overflow:hidden}
-.ph img,.ph video{width:100%;height:100%;object-fit:cover}
-.cb{padding:1rem 0 .2rem}.cb h3{font-size:1.65rem}
-.cb .row{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.6rem}.cb b{font-weight:600}
-.tag{font-size:.72rem;padding:.05rem .55rem;border-radius:4px;background:none;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
-.tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg);font-weight:600}
-
-.car{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:none}
-.car::-webkit-scrollbar{display:none}
-.car .card{flex:0 0 min(78%,300px);scroll-snap-align:start;background:var(--card);border-radius:12px;border:1px solid var(--line);overflow:hidden}
-.car .ph{height:220px;border-radius:0}
-.car .cb{padding:1rem}
-
 /* About & Gallery */
-.about{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:center}
-.about p{font-size:1.15rem;max-width:36ch;line-height:1.7}
-.photos{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:.8rem;height:100%}
+.about{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:center}
+.about p{font-size:1.15rem;max-width:32ch;line-height:1.7}
+.photos{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:0.8rem;height:100%}
 .photos .pw:first-child{grid-column:1;grid-row:1 / 3}
 .about-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;transition:transform .4s}
 .about-img:hover{transform:scale(1.02)}
@@ -263,14 +240,14 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 <section id="menu">
   <h2 data-i="menu"></h2>
   
-  <!-- Categories integrated under Menu -->
+  <!-- Our Offerings moved under Menu, product list removed -->
   <div class="cat-grid">
     <div class="cat-card" data-cat="0">
       <div class="cat-media"><img src="pexels-prudvi-raj-1202091-15221973.jpg" alt="Coffee"></div>
       <h3>Coffee</h3>
     </div>
     <div class="cat-card" data-cat="1">
-      <div class="cat-media"><video src="pexels-olegnagovski-20476268.jpg" autoplay muted loop playsinline></video></div>
+      <div class="cat-media"><img src="pexels-olegnagovski-20476268.jpg" alt="Tea"></div>
       <h3>Tea</h3>
     </div>
     <div class="cat-card" data-cat="2">
@@ -286,16 +263,10 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
       <h3>Desserts</h3>
     </div>
   </div>
-
-  <div class="filters">
-    <input id="q" type="search" data-p="search">
-    <label><input type="checkbox" id="fs"> <span data-i="sugar"></span></label>
-    <label><input type="checkbox" id="fp"> <span data-i="under"></span></label>
-    <button class="btn" id="vfm" style="margin-left:auto"></button>
+  
+  <div style="text-align:center; margin-top:2rem;">
+    <button class="btn" id="vfm" data-i="view"></button>
   </div>
-  <div class="tabs" id="tabs" role="tablist"></div>
-  <p id="hint" style="color:var(--mut)"></p>
-  <div class="grid" id="grid"></div>
 </section>
 
 <section id="special">
@@ -424,13 +395,13 @@ footer{background:#0d0806;color:#efe6da;padding:4.5rem 1.5rem 2rem;border-top:1p
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const T={
-  en:{g:["☀ Good morning","🌤 Good afternoon","🌙 Good evening"],tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",view:"View menu",order:"Order / Reserve",menu:"Menu",search:"Search the menu",sugar:"No sugar",under:"Under $5",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We opened as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"],hint:["Morning picks come first.","Afternoon picks come first.","Evening picks come first."],ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal"},
-  hy:{g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեկո"],tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",view:"Տեսնել ճաշացանկը",order:"Պատվիրել /Ամրագրել",menu:"Ճաշացանկ",search:"Որոնել ճաշացանկում",sugar:"Առանց շաքար",under:"Մինչև $5",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է մոլորակի արբանյակ՝ Լուսին։ Մենք սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա հետ ընթացող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել պատվերին",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"],hint:["Առավոտյան ընտրանին առաջինն է։","Ցերեկային ընտրանին առաջինն է։","Երեկոյան ընտրանին առաջինն է։"],ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ"},
-  ru:{g:["☀ Доброе утро","🌤 Добрый день","🌙 Добрый вечер"],tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",view:"Смотреть меню",order:"Заказать / Забронировать",menu:"Меню",search:"Поиск по меню",sugar:"Без сахара",under:"До $5",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",open:"Открыто",closed:"Закрыто",add:"Добавить в заказ",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"],hint:["Утренние позиции первыми.","Дневные позиции первыми.","Вечерние позиции первыми."],ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал"}
+  en:{g:["☀ Good morning","🌤 Good afternoon","🌙 Good evening"],tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",view:"View full menu",order:"Order / Reserve",menu:"Our Offerings",search:"Search the menu",sugar:"No sugar",under:"Under $5",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We opened as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"],hint:["Morning picks come first.","Afternoon picks come first.","Evening picks come first."],ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal"},
+  hy:{g:["☀ Բարի լույս","🌤 Բարի օր","🌙 Բարի երեկո"],tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",view:"Դիտել ամբողջ ճաշացանկը",order:"Պատվիրել /Ամրագրել",menu:"Մեր առաջարկները",search:"Որոնել ճաշացանկում",sugar:"Առանց շաքար",under:"Մինչև $5",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է մոլորակի արբանյակ՝ Լուսին։ Մենք սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա հետ ընթացող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել պատվերին",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"],hint:["Առավոտյան ընտրանին առաջինն է։","Ցերեկային ընտրանին առաջինն է։","Երեկոյան ընտրանին առաջինն է։"],ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ"},
+  ru:{g:["☀ Доброе утро","🌤 Добрый день","🌙 Добрый вечер"],tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",view:"Смотреть всё меню",order:"Заказать / Забронировать",menu:"Наши предложения",search:"Поиск по меню",sugar:"Без сахара",under:"До $5",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",open:"Открыто",closed:"Закрыто",add:"Добавить в заказ",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"],hint:["Утренние позиции первыми.","Дневные позиции первыми.","Вечерние позиции первыми."],ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал"}
 };
 const DR=[["S",0],["M",.5],["L",1]],FR=[["Regular",0],["Large",2]];
 
-// Menu items with specific media for Today's Special
+// Menu items with specific media for "Today's special" from the provided list
 const M=[
   {id:0,n:'Espresso',c:0,p:3,e:'☕',d:'Single-origin shot with rich crema.',ing:['espresso'],k:5,al:[],t:'m',tg:['pop'],v:0,s:1,media:{type:'img',src:'pexels-dzeninalukac-1469903.jpg'}},
   {id:1,n:'Americano',c:0,p:3.5,e:'☕',d:'Espresso lengthened with hot water.',ing:['espresso','water'],k:10,al:[],t:'m',tg:[],v:0,s:1},
@@ -505,8 +476,12 @@ function render(){
   const t=L();
   $("#greet").textContent=t.g[per];
   
-  // Time chips without Auto
-  $("#chips").innerHTML=["☀ "+t.g[0].split(" ")[1],"🌤 "+t.g[1].split(" ")[1],"🌙 "+t.g[2].split(" ")[1]].map((x,i)=>`<button data-p${i} aria-pressed="${per==i}">${x}</button>`).join("");
+  // Time chips without Auto button
+  const timeLabels = lang === 'en' ? ["☀ Morning", "🌤 Afternoon", "🌙 Evening"] : 
+                     lang === 'hy' ? ["☀ Առավոտ", "🌤 Ցերեկ", "🌙 Երեկո"] : 
+                     ["☀ Утро", "🌤 День", "🌙 Вечер"];
+                     
+  $("#chips").innerHTML=timeLabels.map((x,i)=>`<button data-p${i} aria-pressed="${per==i}">${x}</button>`).join("");
   $$("#chips button[data-p0],#chips button[data-p1],#chips button[data-p2]").forEach((b,i)=>b.onclick=()=>setP(i));
   
   $("#tabs").innerHTML=t.cats.map((c,i)=>`<button role="tab" aria-selected="${i==cat}" data-c="${i}">${c}</button>`).join("");
@@ -519,7 +494,6 @@ function render(){
     const bMatch=b.t.includes(PN[per][0])?1:0;
     return bMatch-aMatch;
   });
-  $("#grid").innerHTML=list.map(card).join("")||`<p>—</p>`;
   
   // Today's special: filter items with 'pop' or 'new' tags, sort by current period relevance
   const specials=M.filter(m=>m.tg.length).sort((a,b)=>{
