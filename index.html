@@ -27,7 +27,7 @@ h1,h2,h3,nav b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;line
 h2{font-size:clamp(2.2rem,4.5vw,3.4rem);display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
 h2::before{content:"";width:8px;height:8px;background:var(--acc);transform:rotate(45deg);flex:none}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
-section{padding:5.5rem 1.5rem;max-width:1180px;margin:auto}
+section{padding:5.5rem 1.5rem;max-width:1180px;margin:auto;content-visibility:auto;contain-intrinsic-size:auto 600px}
 
 button{font:inherit;cursor:pointer;color:inherit}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px}
@@ -44,7 +44,7 @@ nav b{font-size:1.6rem}
 .tools button,.tools select{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.35rem .75rem;color:var(--fg)}
 
 /* HERO */
-.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;color:#fff;content-visibility:auto;contain-intrinsic-size:auto 800px}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 45%,rgba(0,0,0,.25) 100%);transition:background .8s}
 [data-period=afternoon] .hero-shade{background:linear-gradient(100deg,rgba(6,32,32,.78),rgba(6,32,32,.4) 50%,rgba(0,0,0,.2))}
@@ -83,14 +83,13 @@ nav b{font-size:1.6rem}
 .cat-card.dim:hover{opacity:1}
 .menu-cta{text-align:center;margin-top:2.4rem}
 
-/* SPECIALS */
-.car{display:flex;gap:1.3rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:thin}
-.car::-webkit-scrollbar{height:6px}
-.car::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
-.card{flex:0 0 min(80%,290px);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:0;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s}
+/* SPECIALS - PAGINATED */
+.spec-wrap{position:relative}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.3rem;min-height:340px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:0;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s}
 .card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
 .card .ph{height:210px;overflow:hidden}
-.card .ph img,.card .ph video{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .card:hover .ph img{transform:scale(1.06)}
 .cb{padding:.9rem 1.1rem 1.15rem}
 .cb h3{font-size:1.5rem}
@@ -99,6 +98,13 @@ nav b{font-size:1.6rem}
 .cb b{color:var(--acc);font-weight:700}
 .tag{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.16rem .55rem;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
 .tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg);font-weight:700}
+
+/* Pagination controls */
+.spec-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:2rem}
+.spec-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:1.2rem;cursor:pointer;transition:.2s;display:grid;place-items:center}
+.spec-nav button:hover:not(:disabled){background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+.spec-nav button:disabled{opacity:.3;cursor:not-allowed}
+.spec-counter{font-weight:600;color:var(--mut);min-width:60px;text-align:center}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:center}
@@ -213,6 +219,7 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
   .cat-grid{grid-template-columns:repeat(2,1fr)}
   .cat-media{height:130px}
   .hfoot{gap:.5rem 1.4rem}
+  .spec-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -262,7 +269,14 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 
 <section id="special">
   <h2 data-i="special"></h2>
-  <div class="car" id="car"></div>
+  <div class="spec-wrap">
+    <div class="spec-grid" id="specGrid"></div>
+    <div class="spec-nav">
+      <button id="specPrev" aria-label="Previous">‹</button>
+      <span class="spec-counter" id="specCounter"></span>
+      <button id="specNext" aria-label="Next">›</button>
+    </div>
+  </div>
 </section>
 
 <section id="about" class="about">
@@ -271,9 +285,9 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
     <p data-i="aboutTxt"></p>
   </div>
   <div class="photos">
-    <div class="pw"><img src="pexels-kubra-tokur-210746713-11764854.jpg" alt="Lusin Café interior" loading="lazy"></div>
-    <div class="pw"><img src="pexels-esranurkalay-35133737.jpg" alt="Coffee detail" loading="lazy"></div>
-    <div class="pw"><img src="pexels-rania-6747870.jpg" alt="Table setting" loading="lazy"></div>
+    <div class="pw"><img src="pexels-kubra-tokur-210746713-11764854.jpg" alt="Lusin Café interior" loading="lazy" decoding="async"></div>
+    <div class="pw"><img src="pexels-esranurkalay-35133737.jpg" alt="Coffee detail" loading="lazy" decoding="async"></div>
+    <div class="pw"><img src="pexels-rania-6747870.jpg" alt="Table setting" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -360,7 +374,7 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
 const T={
- en:{navMenu:"Menu",menu:"Our Offerings",view:"View menu",order:"Order / Reserve",tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",special:"Today’s special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We began as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",explore:"Explore",contact:"Contact",table:"Your table",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",full:"View full menu",close:"Close",order2:"Order",ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal",
+ en:{navMenu:"Menu",menu:"Our Offerings",view:"View menu",order:"Order / Reserve",tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We began as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",explore:"Explore",contact:"Contact",table:"Your table",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",full:"View full menu",close:"Close",order2:"Order",ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal",
    g:["Good morning","Good afternoon","Good evening"],chips:["☀ Morning","🌤 Afternoon","🌙 Evening"],
    note:["Morning — coffee and breakfast come first.","Afternoon — desserts and cold drinks take the lead.","Evening — tea, warm sweets and a slower mood."],
    cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"]},
@@ -375,11 +389,13 @@ const T={
 };
 
 const IMG={
- coffee1:'pexels-dzeninalukac-1469903.jpg',
+ coffee1:'pexels-vovkapanda-6213737.jpg',
  coffee2:'pexels-prudvi-raj-1202091-15221973.jpg',
+ v60:'pexels-yesehoon-16839946.jpg',
  tea:'pexels-olegnagovski-20476268.jpg',
- break1:'pexels-rais-radzi-1317360057-28913841.jpg',
- break2:'pexels-elizabeth-zernetska-86424040-9001223.jpg',
+ break1:'pexels-yasemin-58133527-33848633.jpg',
+ break2:'pexels-picswithjer-30195628.jpg',
+ break3:'pexels-kubranurcakiroglu-38773946.jpg',
  des1:'pexels-imagenesclau-36542834.jpg',
  des2:'pexels-minchephoto-7491901.jpg',
  extra1:'pexels-onur-satici-1491195804-27152336.jpg',
@@ -394,16 +410,15 @@ const VID={cold1:'20350297-hd_1080_1920_60fps.mp4',cold2:'5380055-hd_1080_1920_3
 const CAT_MEDIA=[
  {t:'img',s:IMG.coffee2},{t:'img',s:IMG.tea},{t:'video',s:VID.cold2},{t:'img',s:IMG.break2},{t:'img',s:IMG.des2}
 ];
-const CAT_FALLBACK=[IMG.coffee1,IMG.tea,IMG.extra2,IMG.break1,IMG.des1];
 
 /* name, cat, price, desc, ingredients, kcal, allergens, periods, tags, sugarfree, media */
 const M=[
 ['Espresso',0,3,'Single-origin shot with rich crema.',['espresso'],5,[],'m',['pop'],1,IMG.coffee1],
 ['Americano',0,3.5,'Espresso lengthened with hot water.',['espresso','water'],10,[],'m',[],1,IMG.coffee2],
-['Cappuccino',0,4.2,'Espresso, steamed milk and thick foam.',['espresso','milk'],110,['Milk'],'m',['pop'],0,IMG.extra1],
+['Cappuccino',0,4.2,'Espresso, steamed milk and thick foam.',['espresso','milk'],110,['Milk'],'m',['pop'],0,IMG.coffee2],
 ['Flat White',0,4.5,'Double ristretto with velvety microfoam.',['espresso','milk'],120,['Milk'],'ma',[],0,IMG.coffee2],
 ['Latte',0,4.5,'Espresso with plenty of steamed milk.',['espresso','milk'],150,['Milk'],'ma',[],0,IMG.coffee1],
-['V60 Pour Over',0,5,'Hand-brewed filter from rotating beans.',['filter coffee'],5,[],'m',['new'],1,IMG.coffee2],
+['V60 Pour Over',0,5,'Hand-brewed filter from rotating beans.',['filter coffee'],5,[],'m',['new'],1,IMG.v60],
 ['Earl Grey',1,3.8,'Black tea scented with bergamot.',['black tea','bergamot'],2,[],'e',['pop'],1,IMG.tea],
 ['Jasmine Green Tea',1,3.8,'Delicate green tea with jasmine blossoms.',['green tea','jasmine'],2,[],'ae',[],1,IMG.extra3],
 ['Chai Latte',1,4.8,'Spiced black tea with steamed milk.',['black tea','spices','milk'],160,['Milk'],'e',['pop'],0,IMG.tea],
@@ -417,7 +432,7 @@ const M=[
 ['Avocado Toast',3,11.5,'Sourdough, smashed avocado, lime, chilli.',['sourdough','avocado','lime'],380,['Gluten'],'m',['pop'],1,IMG.break1],
 ['Eggs Benedict',3,13,'Poached eggs, ham, hollandaise on a muffin.',['eggs','ham','hollandaise'],620,['Egg','Gluten','Milk'],'m',['pop'],1,IMG.break2],
 ['Pancakes',3,10.5,'Fluffy stack with berries and maple syrup.',['flour','egg','berries'],560,['Gluten','Egg','Milk'],'m',[],0,IMG.break1],
-['Granola Bowl',3,9,'House granola, Greek yoghurt, seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',['new'],0,IMG.break2],
+['Granola Bowl',3,9,'House granola, Greek yoghurt, seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',['new'],0,IMG.break3],
 ['Butter Croissant',3,3.8,'Baked every morning, flaky and golden.',['flour','butter'],270,['Gluten','Milk'],'m',[],0,IMG.break1],
 ['Tiramisu',4,7,'Mascarpone, espresso-soaked savoiardi, cocoa.',['mascarpone','espresso'],430,['Milk','Egg','Gluten'],'ae',['pop'],0,IMG.des1],
 ['New York Cheesecake',4,7.5,'Baked cheesecake with berry compote.',['cream cheese','berries'],460,['Milk','Egg','Gluten'],'ae',[],0,IMG.des2],
@@ -436,18 +451,21 @@ const PN=['morning','afternoon','evening'], PK=['m','a','e'];
 const ORDER=[[0,3,1,2,4],[4,2,0,1,3],[1,4,0,2,3]];
 const DR=[["S",0],["M",.5],["L",1]], FR=[["Regular",0],["Large",2]];
 const TAGS={new:"New",pop:"Popular"};
+const PER_PAGE=4;
+let specPage=0;
 
 let lang='en',per=0,cart=[],cur=null,sz=0,theme=null;
 const L=()=>T[lang], sizes=m=>m.c<3?DR:FR, fmt=n=>'$'+n.toFixed(2);
 const autoP=()=>{const h=new Date().getHours();return h<12?0:h<17?1:2};
 const mediaHTML=(o,cls='')=>o.t==='video'
   ? `<video class="${cls}" src="${o.s}" autoplay muted loop playsinline></video>`
-  : `<img class="${cls}" src="${o.s}" alt="" loading="lazy">`;
+  : `<img class="${cls}" src="${o.s}" alt="" loading="lazy" decoding="async">`;
 
 function setP(i){
   per=i;
   document.body.dataset.period=PN[i];
   if(!theme) document.body.dataset.theme = (i===2?'dark':'light');
+  specPage=0;
   render();
 }
 
@@ -481,20 +499,32 @@ function render(){
     $(`[data-cb="${c}"]`).textContent=rank<2?t.now:'';
   });
 
-  const key=PK[per];
-  const specials=[...M].filter(m=>m.tg.length)
-    .sort((a,b)=>(b.t.includes(key)-a.t.includes(key)))
-    .slice(0,6);
-  $('#car').innerHTML=specials.map(card).join('');
-  $$('#car .card').forEach(c=>c.onclick=()=>openM(+c.dataset.id));
-
+  renderSpecials();
   cartUI(); fmRender(); clk();
+}
+
+function renderSpecials(){
+  const t=L(), key=PK[per];
+  const specials=[...M].filter(m=>m.tg.length)
+    .sort((a,b)=>(b.t.includes(key)-a.t.includes(key)));
+  const totalPages=Math.ceil(specials.length/PER_PAGE);
+  if(specPage>=totalPages) specPage=totalPages-1;
+  if(specPage<0) specPage=0;
+  const start=specPage*PER_PAGE;
+  const pageItems=specials.slice(start,start+PER_PAGE);
+  
+  $('#specGrid').innerHTML=pageItems.map(card).join('');
+  $$('#specGrid .card').forEach(c=>c.onclick=()=>openM(+c.dataset.id));
+  
+  $('#specCounter').textContent=`${start+1}–${Math.min(start+PER_PAGE,specials.length)} / ${specials.length}`;
+  $('#specPrev').disabled=specPage===0;
+  $('#specNext').disabled=specPage>=totalPages-1;
 }
 
 function card(m){
   const t=L(), on=m.t.includes(PK[per]);
   return `<button class="card" data-id="${m.id}">
-    <div class="ph"><img src="${m.img}" alt="${m.n}" loading="lazy"></div>
+    <div class="ph"><img src="${m.img}" alt="${m.n}" loading="lazy" decoding="async"></div>
     <div class="cb"><h3>${m.n}</h3><small>${t.cats[m.c]}</small>
     <div class="row"><b>${fmt(m.p)}</b><span>${on?`<span class="tag now">${t.now}</span> `:''}${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join(' ')}</span></div></div></button>`;
 }
@@ -514,7 +544,7 @@ function openCat(i){
 function openM(id){cur=M[id];sz=0;modal()}
 function modal(){
   const t=L(),m=cur,S=sizes(m);
-  $('#mph').innerHTML=`<img src="${m.img}" alt="${m.n}">`;
+  $('#mph').innerHTML=`<img src="${m.img}" alt="${m.n}" loading="lazy" decoding="async">`;
   $('#mb').innerHTML=`<h2>${m.n}</h2>
     <p>${m.tg.map(x=>`<span class="tag">${TAGS[x]}</span>`).join(' ')}</p>
     <p>${m.d}</p>
@@ -562,6 +592,14 @@ $('#resv').onclick=()=>window.open('https://wa.me/37400000000?text='+encodeURICo
 $('#lang').onchange=e=>{lang=e.target.value;render()};
 $('#th').onclick=()=>{theme=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=theme};
 $('#tbl').oninput=()=>{cartUI();qr()};
+
+$('#specPrev').onclick=()=>{if(specPage>0){specPage--;renderSpecials()}};
+$('#specNext').onclick=()=>{
+  const t=L(), key=PK[per];
+  const specials=[...M].filter(m=>m.tg.length).sort((a,b)=>(b.t.includes(key)-a.t.includes(key)));
+  const totalPages=Math.ceil(specials.length/PER_PAGE);
+  if(specPage<totalPages-1){specPage++;renderSpecials()}
+};
 
 function clk(){
   const h=new Date().getHours(), o=h>=8&&h<23, b=$('#open');
