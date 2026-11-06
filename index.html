@@ -43,7 +43,6 @@ nav b{font-size:1.6rem}
 .tools{display:flex;gap:.4rem}
 .tools button,.tools select{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.35rem .75rem;color:var(--fg)}
 
-/* HERO */
 .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;color:#fff;content-visibility:auto;contain-intrinsic-size:auto 800px}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 45%,rgba(0,0,0,.25) 100%);transition:background .8s}
@@ -60,7 +59,6 @@ nav b{font-size:1.6rem}
 .chips button[aria-pressed=true]{background:#fff;color:#16181c;border-color:#fff;font-weight:600}
 .hfoot{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:2.8rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.25);font-size:.9rem;opacity:.9}
 
-/* smoke */
 .smoke{position:absolute;left:50%;bottom:8%;width:220px;height:320px;transform:translateX(-50%);z-index:2;pointer-events:none}
 .smoke i{position:absolute;bottom:0;left:50%;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);filter:blur(16px);animation:rise 7s infinite ease-out}
 .smoke i:nth-child(1){left:42%;animation-delay:0s}
@@ -69,7 +67,6 @@ nav b{font-size:1.6rem}
 .smoke i:nth-child(4){left:55%;width:60px;height:60px;animation-delay:5.2s}
 @keyframes rise{0%{transform:translate(-50%,0) scale(.5);opacity:0}25%{opacity:.55}100%{transform:translate(-50%,-270px) scale(2.4);opacity:0}}
 
-/* OFFERINGS */
 .note{color:var(--mut);margin:-1rem 0 1.8rem;font-size:.98rem}
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem}
 .cat-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;padding:0;text-align:left;transition:transform .3s,box-shadow .3s,border-color .3s}
@@ -83,7 +80,6 @@ nav b{font-size:1.6rem}
 .cat-card.dim:hover{opacity:1}
 .menu-cta{text-align:center;margin-top:2.4rem}
 
-/* SPECIALS - PAGINATED */
 .spec-wrap{position:relative}
 .spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.3rem;min-height:340px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;padding:0;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s}
@@ -99,14 +95,12 @@ nav b{font-size:1.6rem}
 .tag{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.16rem .55rem;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
 .tag.now{background:var(--acc);border-color:var(--acc);color:var(--accfg);font-weight:700}
 
-/* Pagination controls */
 .spec-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:2rem}
 .spec-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:1.2rem;cursor:pointer;transition:.2s;display:grid;place-items:center}
 .spec-nav button:hover:not(:disabled){background:var(--acc);color:var(--accfg);border-color:var(--acc)}
 .spec-nav button:disabled{opacity:.3;cursor:not-allowed}
 .spec-counter{font-weight:600;color:var(--mut);min-width:60px;text-align:center}
 
-/* ABOUT */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:center}
 .about p{font-size:1.08rem;max-width:30ch;line-height:1.75;color:var(--mut)}
 .photos{display:grid;grid-template-columns:1.65fr 1fr;grid-template-rows:1fr 1fr;gap:.8rem;min-height:430px}
@@ -115,20 +109,17 @@ nav b{font-size:1.6rem}
 .photos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
 .photos .pw:hover img{transform:scale(1.05)}
 
-/* GALLERY */
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem}
 .gal .pw{overflow:hidden;border-radius:10px;aspect-ratio:1}
 .gal img,.gal video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .gal .pw:hover img,.gal .pw:hover video{transform:scale(1.07)}
 
-/* REVIEWS */
 .rev{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.5rem}
 .rev blockquote{margin:0;border-top:1px solid var(--line);padding:1.2rem 0 0}
 .rev p{font-family:'Instrument Serif',Georgia,serif;font-size:1.5rem;line-height:1.3;margin:.5rem 0 .8rem}
 .st{color:var(--acc);letter-spacing:2px}
 .rev small{color:var(--mut)}
 
-/* VISIT */
 .visit{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
 .map{min-height:280px;border-radius:14px;border:1px solid var(--line);background-color:var(--card);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:38px 38px;display:grid;place-items:center;font-size:2.4rem}
 .badge{display:inline-block;padding:.25rem .85rem;border-radius:99px;font-weight:700;font-size:.85rem}
@@ -138,7 +129,6 @@ table{border-collapse:collapse;margin:1rem 0}
 td{padding:.3rem 2rem .3rem 0}
 .visit a{color:var(--acc)}
 
-/* FOOTER */
 footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2rem}
 .fgrid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
 .fcol h3{font-size:1.5rem;color:#fff;margin-bottom:1rem}
@@ -158,7 +148,6 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 #qrnote{color:#7c8089;font-size:.82rem;max-width:32ch;margin-top:.6rem}
 .fbot{max-width:1180px;margin:3rem auto 0;padding-top:1.5rem;border-top:1px solid #22252b;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;color:#6c6f76;font-size:.84rem}
 
-/* MODALS */
 .ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:grid;place-items:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
 .ov.on{opacity:1;pointer-events:auto}
 .mod{background:var(--bg);border-radius:14px;width:min(520px,100%);max-height:92vh;overflow:auto;transform:scale(.94);transition:transform .25s;position:relative;border:1px solid var(--line)}
@@ -178,7 +167,6 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 .ci{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
 .ci button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--card)}
 
-/* FULL MENU */
 .fm{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;transform:translateY(100%);visibility:hidden;transition:transform .35s,visibility .35s}
 .fm.on{transform:none;visibility:visible}
 .fm header{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.9rem 1.2rem;padding-top:calc(.9rem + env(safe-area-inset-top,0px));background:var(--bg);border-bottom:1px solid var(--line)}
@@ -374,15 +362,15 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
 const T={
- en:{navMenu:"Menu",menu:"Our Offerings",view:"View menu",order:"Order / Reserve",tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",special:"Today's special",about:"About us",aboutTxt:"Welcome to Lusin Café, where every moment of your day finds its perfect companion. We serve carefully crafted coffee, fresh breakfasts, indulgent desserts, and a curated selection of teas to match your mood from morning to night.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",explore:"Explore",contact:"Contact",table:"Your table",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",full:"View full menu",close:"Close",order2:"Order",ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal",
+ en:{navMenu:"Menu",menu:"Our Offerings",view:"View menu",order:"Order / Reserve",tag:"Breakfast with the sun, desserts in the afternoon, slow tea after dark.",special:"Today's special",about:"About us",aboutTxt:"Lusin means moon in Armenian. We began as a small night-time tea room and grew into a café that follows the day: bright breakfasts, sweet afternoons, quiet evenings.",gallery:"Gallery",reviews:"Reviews",visit:"Visit us",explore:"Explore",contact:"Contact",table:"Your table",open:"Open now",closed:"Closed now",add:"Add to order",cart:"Your order",send:"Send order on WhatsApp",call:"Call",total:"Total",empty:"Your order is empty.",now:"Now",full:"View full menu",close:"Close",order2:"Order",ing:"Ingredients",al:"Allergens",none:"None",kcal:"kcal",
    g:["Good morning","Good afternoon","Good evening"],chips:["☀ Morning","🌤 Afternoon","🌙 Evening"],
    note:["Morning — coffee and breakfast come first.","Afternoon — desserts and cold drinks take the lead.","Evening — tea, warm sweets and a slower mood."],
    cats:["Coffee","Tea","Cold drinks","Breakfast","Desserts"]},
- hy:{navMenu:"Ճաշացանկ",menu:"Մեր առաջարկները",view:"Տեսնել ճաշացանկը",order:"Պատվիրել / Ամրագրել",tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Բարի գալուստ Լուսին սրճարան, որտեղ օրվա յուրաքանչյուր պահ գտնում է իր կատարյալ ուղեկիցը։ Մենք մատուցում ենք խնամքով պատրաստված սուրճ, թարմ նախաճաշներ, քաղցր դեսերտներ և ընտրված թեյեր՝ առավոտից մինչև գիշեր։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",explore:"Բաժիններ",contact:"Կապ",table:"Ձեր սեղանը",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",full:"Ամբողջ ճաշացանկը",close:"Փակել",order2:"Պատվեր",ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ",
+ hy:{navMenu:"Ճաշացանկ",menu:"Մեր առաջարկները",view:"Տեսնել ճաշացանկը",order:"Պատվիրել / Ամրագրել",tag:"Նախաճաշ արևի հետ, դեսերտ ցերեկը, թեյ՝ մթնելուց հետո։",special:"Օրվա ընտրանի",about:"Մեր մասին",aboutTxt:"Լուսին նշանակում է լուսին։ Սկսեցինք որպես փոքր գիշերային թեյարան և դարձանք օրվա ռիթմով ապրող սրճարան։",gallery:"Պատկերասրահ",reviews:"Կարծիքներ",visit:"Այցելեք մեզ",explore:"Բաժիններ",contact:"Կապ",table:"Ձեր սեղանը",open:"Բաց է",closed:"Փակ է",add:"Ավելացնել",cart:"Ձեր պատվերը",send:"Ուղարկել WhatsApp-ով",call:"Զանգել",total:"Ընդհանուր",empty:"Պատվերը դատարկ է։",now:"Հիմա",full:"Ամբողջ ճաշացանկը",close:"Փակել",order2:"Պատվեր",ing:"Բաղադրիչներ",al:"Ալերգեններ",none:"Չկա",kcal:"կկալ",
    g:["Բարի լույս","Բարի օր","Բարի երեկո"],chips:["☀ Առավոտ","🌤 Ցերեկ","🌙 Երեկո"],
    note:["Առավոտ — սուրճ և նախաճաշ։","Ցերեկ — դեսերտներ և սառը ըմպելիքներ։","Երեկո — թեյ և հանգիստ տրամադրություն։"],
    cats:["Սուրճ","Թեյ","Սառը ըմպելիքներ","Նախաճաշ","Դեսերտներ"]},
- ru:{navMenu:"Меню",menu:"Наши предложения",view:"Смотреть меню",order:"Заказать / Бронь",tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",special:"Выбор дня",about:"О нас",aboutTxt:"Добро пожаловать в Lusin Café, где каждый момент вашего дня находит идеального спутника. Мы подаём тщательно приготовленный кофе, свежие завтраки, изысканные десерты и подобранную коллекцию чаёв — от утра до ночи.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",explore:"Разделы",contact:"Контакты",table:"Ваш столик",open:"Открыто",closed:"Закрыто",add:"Добавить",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",full:"Всё меню",close:"Закрыть",order2:"Заказ",ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал",
+ ru:{navMenu:"Меню",menu:"Наши предложения",view:"Смотреть меню",order:"Заказать / Бронь",tag:"Завтраки с рассветом, десерты днём, неспешный чай вечером.",special:"Выбор дня",about:"О нас",aboutTxt:"Lusin по-армянски значит «луна». Мы начинали как маленькая ночная чайная и выросли в кафе, которое живёт по ритму дня.",gallery:"Галерея",reviews:"Отзывы",visit:"Приходите",explore:"Разделы",contact:"Контакты",table:"Ваш столик",open:"Открыто",closed:"Закрыто",add:"Добавить",cart:"Ваш заказ",send:"Отправить в WhatsApp",call:"Позвонить",total:"Итого",empty:"Заказ пуст.",now:"Сейчас",full:"Всё меню",close:"Закрыть",order2:"Заказ",ing:"Состав",al:"Аллергены",none:"Нет",kcal:"ккал",
    g:["Доброе утро","Добрый день","Добрый вечер"],chips:["☀ Утро","🌤 День","🌙 Вечер"],
    note:["Утро — кофе и завтраки на первом месте.","День — десерты и холодные напитки.","Вечер — чай, тёплые сладости и спокойный настрой."],
    cats:["Кофе","Чай","Холодные напитки","Завтраки","Десерты"]}
@@ -411,7 +399,6 @@ const CAT_MEDIA=[
  {t:'img',s:IMG.coffee2},{t:'img',s:IMG.tea},{t:'video',s:VID.cold2},{t:'img',s:IMG.break2},{t:'img',s:IMG.des2}
 ];
 
-/* name, cat, price, desc, ingredients, kcal, allergens, periods, tags, sugarfree, media */
 const M=[
 ['Espresso',0,3,'Single-origin shot with rich crema.',['espresso'],5,[],'m',['pop'],1,IMG.coffee1],
 ['Americano',0,3.5,'Espresso lengthened with hot water.',['espresso','water'],10,[],'m',[],1,IMG.coffee2],
@@ -429,10 +416,10 @@ const M=[
 ['Espresso Tonic',2,5,'Espresso over tonic and orange peel.',['espresso','tonic','orange'],35,[],'a',[],0,IMG.extra1],
 ['Fresh Lemonade',2,4.2,'Pressed lemon, mint, sparkling water.',['lemon','mint'],110,[],'a',[],0,IMG.extra2],
 ['Iced Matcha Latte',2,5.5,'Ceremonial matcha with milk and ice.',['matcha','milk'],110,['Milk'],'a',[],0,IMG.extra3],
-['Avocado Toast',3,11.5,'Sourdough, smashed avocado, lime, chilli.',['sourdough','avocado','lime'],380,['Gluten'],'m',[],1,IMG.break1],
-['Eggs Benedict',3,13,'Poached eggs, ham, hollandaise on a muffin.',['eggs','ham','hollandaise'],620,['Egg','Gluten','Milk'],'m',[],1,IMG.break2],
+['Avocado Toast',3,11.5,'Sourdough, smashed avocado, lime, chilli.',['sourdough','avocado','lime'],380,['Gluten'],'m',['pop'],1,IMG.break1],
+['Eggs Benedict',3,13,'Poached eggs, ham, hollandaise on a muffin.',['eggs','ham','hollandaise'],620,['Egg','Gluten','Milk'],'m',['pop'],1,IMG.break2],
 ['Pancakes',3,10.5,'Fluffy stack with berries and maple syrup.',['flour','egg','berries'],560,['Gluten','Egg','Milk'],'m',[],0,IMG.break1],
-['Granola Bowl',3,9,'House granola, Greek yoghurt, seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',[],0,IMG.break3],
+['Granola Bowl',3,9,'House granola, Greek yoghurt, seasonal fruit.',['oats','yoghurt','fruit'],340,['Gluten','Milk','Nuts'],'m',['new'],0,IMG.break3],
 ['Butter Croissant',3,3.8,'Baked every morning, flaky and golden.',['flour','butter'],270,['Gluten','Milk'],'m',[],0,IMG.break1],
 ['Tiramisu',4,7,'Mascarpone, espresso-soaked savoiardi, cocoa.',['mascarpone','espresso'],430,['Milk','Egg','Gluten'],'ae',[],0,IMG.des1],
 ['New York Cheesecake',4,7.5,'Baked cheesecake with berry compote.',['cream cheese','berries'],460,['Milk','Egg','Gluten'],'ae',[],0,IMG.des2],
@@ -451,7 +438,7 @@ const PN=['morning','afternoon','evening'], PK=['m','a','e'];
 const ORDER=[[0,3,1,2,4],[4,2,0,1,3],[1,4,0,2,3]];
 const DR=[["S",0],["M",.5],["L",1]], FR=[["Regular",0],["Large",2]];
 const TAGS={new:"New",pop:"Popular"};
-const PER_PAGE=4;
+const PER_PAGE=6;
 let specPage=0;
 
 let lang='en',per=0,cart=[],cur=null,sz=0,theme=null;
@@ -606,11 +593,10 @@ function clk(){
   b.textContent=o?L().open:L().closed; b.className='badge '+(o?'o':'c');
 }
 
-/* FULL MENU */
 function fmRender(){
   const t=L(), tb=tbl();
   $('#fmh').textContent=t.full;
-  $('#fmt').textContent='Table '+tb; $('#fmt').hidden=!tb;
+  $('#fmt').textContent='Table '+tb; $('#fmt'.hidden=!tb;
   $('#fmx').textContent=t.close;
   $('#fmc').innerHTML=t.cats.map((c,i)=>`<button data-j="${i}">${c}</button>`).join('');
   $$('#fmc button').forEach(b=>b.onclick=()=>$('#fsec'+b.dataset.j).scrollIntoView({behavior:'smooth'}));
@@ -624,10 +610,9 @@ function fmRender(){
 }
 const openFM=()=>{$('#fm').classList.add('on');$('#fm').scrollTop=0;document.body.style.overflow='hidden'};
 const closeFM=()=>{$('#fm').classList.remove('on');document.body.style.overflow=''};
-$('#vfm').onclick=openFM; $('#fmx').onclick=closeFM;
+$('#vfm').onclick=openFM; $('#fmx'.onclick=closeFM;
 addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();closeFM()}});
 
-/* QR */
 const BASE=location.href.split('#')[0].split('?')[0];
 const QS=[['Menu',BASE+'#full-menu','On the door and cups. Opens the menu.'],
 ['Table',null,'One code per table. Orders arrive with the table number.'],
