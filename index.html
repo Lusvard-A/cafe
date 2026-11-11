@@ -230,7 +230,9 @@ footer{background:#0c0d10;color:#e9e7e3;padding:4.5rem 1.5rem 2rem;margin-top:2r
 </nav>
 
 <header class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
+  <!-- PERFORMANCE FIX: preload="none" stops the 4K video from choking the network on load. 
+       The poster ensures the screen isn't black while it buffers. Autoplay still works. -->
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="none" poster="pexels-vovkapanda-6213737.jpg">
     <source src="17670372-uhd_3840_2160_25fps.mp4" type="video/mp4">
   </video>
   <div class="hero-shade"></div>
@@ -446,8 +448,10 @@ let specPage=0;
 let lang='en',per=0,cart=[],cur=null,sz=0,theme=null;
 const L=()=>T[lang], sizes=m=>m.c<3?DR:FR, fmt=n=>'$'+n.toFixed(2);
 const autoP=()=>{const h=new Date().getHours();return h<12?0:h<17?1:2};
+
+// PERFORMANCE FIX: Added preload="none" to generated videos so they don't choke the browser when scrolling
 const mediaHTML=(o,cls='')=>o.t==='video'
-  ? `<video class="${cls}" src="${o.s}" autoplay muted loop playsinline></video>`
+  ? `<video class="${cls}" src="${o.s}" autoplay muted loop playsinline preload="none"></video>`
   : `<img class="${cls}" src="${o.s}" alt="" loading="lazy" decoding="async">`;
 
 function setP(i){
@@ -636,6 +640,16 @@ addEventListener('hashchange',chk);
 
 buildCats(); buildGal(); setP(autoP()); qr(); chk();
 setInterval(clk,60000);
+
+// Force video autoplay on load. The preload="none" ensures it doesn't block page rendering.
+window.addEventListener('load', () => {
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.play().catch(() => {
+      // Fails silently if strict browser autoplay policies block it, but the poster keeps it looking good
+    });
+  }
+});
 </script>
 </body>
 </html>
